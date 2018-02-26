@@ -4,15 +4,18 @@
 
 using namespace std;
 
-LinearStringMatcher::LinearStringMatcher(string &_x, string &_y) : x(_x), y(_y) {    
+LinearStringMatcher::LinearStringMatcher(string sx, string sy) {    
     z = new int[255];
     
-    m = x.length();
-    n = y.length();
+    m = sx.length();
+    n = sy.length();
     
     list = new int[m];
     mpNext = new int[m];
     kmpNext = new int[m];
+    
+    x = sx.c_str();
+    y = sy.c_str();
 }
         
 void LinearStringMatcher::preprocessing() {

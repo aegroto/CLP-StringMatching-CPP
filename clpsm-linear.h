@@ -13,7 +13,7 @@ class LinearStringMatcher {
         int k, start, wall;
         int skipStart, kmpStart;
         
-        string &x, &y;
+        const char *x, *y;
         
         void preprocessing();
         int attempt();
@@ -21,7 +21,7 @@ class LinearStringMatcher {
         void search();
         
     public:
-        LinearStringMatcher(string&, string&);
+        LinearStringMatcher(string, string);
         
         void execute();
         void debugOutput();
