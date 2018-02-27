@@ -4,22 +4,23 @@ using namespace std;
 
 class LinearStringMatcher {
     private:
-        int *z;
-        int *list;
-        int *mpNext, *kmpNext;
+        int *z, *list,
+            *mpNext, *kmpNext;
         
-        int m, n;
-        int j;
-        int k, start, wall;
-        int skipStart, kmpStart;
+        int m, n,
+            occurrences;
         
         const char *x, *y;
         
         void preprocessing();
-        int attempt();
-        void advanceSkip();
+        void mpPreprocessing();
+        void kmpPreprocessing();
+
+        int attempt(int&, int&);
+        void advanceSkip(int&, int&);
         void search();
         
+        void report(int);
     public:
         LinearStringMatcher(string, string);
         
