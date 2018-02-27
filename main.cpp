@@ -7,13 +7,17 @@
 #include <stdio.h>
 #include <string>
 #include "clpsm-linear.h"
+#include "utils.h"
 
 using namespace std;
 
 int main() {
-    string pattern = "abcab";
+    string pattern = "abc";
     string text = "ababcabb";
-    
+   
+    /*const char* c = pattern.c_str();
+    printf("%i\n", utils::maxPeriod(c, pattern.length()));*/
+
     LinearStringMatcher matcher(pattern, text);
     matcher.execute();
     matcher.debugOutput();

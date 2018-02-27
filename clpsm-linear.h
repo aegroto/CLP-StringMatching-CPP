@@ -21,6 +21,7 @@ class LinearStringMatcher {
         void search();
         
         void report(int);
+
     public:
         LinearStringMatcher(string, string);
         

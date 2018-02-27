@@ -12,11 +12,13 @@ LinearStringMatcher::LinearStringMatcher(string sx, string sy) {
     n = sy.length();
     
     list = new int[m];
-    mpNext = new int[m];
-    kmpNext = new int[m];
+    mpNext = new int[m + 1];
+    kmpNext = new int[m + 1];
     
     x = sx.c_str();
     y = sy.c_str();
+
+    occurrences = 0;
 }
         
 void LinearStringMatcher::preprocessing() {
@@ -79,20 +81,49 @@ void LinearStringMatcher::advanceSkip(int &i, int &j) {
 }
 
 void LinearStringMatcher::search() {
-    int wall, start, i, j, skipStart, kmpStart, lastPIndex;
+    int wall, start, i, j, k, skipStart, kmpStart, lastPIndex;
 
     wall = 0;
     i = j = -1;
     advanceSkip(i, j);
-    start = j - 1;
+    start = j - i;
     lastPIndex = n - m;
 
     while(start <= lastPIndex) {
         wall = max(wall, start);
         k = attempt(wall, start);
         wall = start + k;
-        
+
+        if(k == m) { 
+            report(start);
+            i = i - utils::maxPeriod(x, m);
+        } else i = list[i];
+
+        if(i < 0)
+            advanceSkip(i, j);
+
+        skipStart = j - i;
+        kmpStart = start + k - kmpNext[k];
+        k = kmpNext[k];
+
+        while(skipStart != kmpStart || !(kmpStart < wall && wall < skipStart)) {
+            if(skipStart < kmpStart) {
+                i = list[i];
+                if(i < 0)
+                    advanceSkip(i, j);
+                skipStart = j - i;            
+            } else {    
+                kmpStart += k - mpNext[k];
+                k = mpNext[k];
+            }
+        }
+
+        start = skipStart;
     }
+}
+
+void LinearStringMatcher::report(int index) {
+    ++occurrences;
 }
 
 void LinearStringMatcher::execute() {
@@ -119,18 +150,20 @@ void LinearStringMatcher::debugOutput() {
     }
 
     printf("\nmpNext: ");
-    for(int i = 0; i < m; ++i) {
+    for(int i = 0; i <= m; ++i) {
         if(mpNext[i] != -1) {
             printf("[%i] = %i ", i, mpNext[i]);
         }
     }
 
     printf("\nkmpNext: ");
-    for(int i = 0; i < m; ++i) {
+    for(int i = 0; i <= m; ++i) {
         if(kmpNext[i] != -1) {
             printf("[%i] = %i ", i, kmpNext[i]);
         }
     }
+
+    printf("\noccurences: %i", occurrences);
     
     printf("\n");
 }
