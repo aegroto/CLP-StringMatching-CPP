@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class LinearStringMatcher {
+class LinearCLPMatcher {
     private:
         int *z, *list,
             *mpNext, *kmpNext;
@@ -23,8 +23,10 @@ class LinearStringMatcher {
         void report(int);
 
     public:
-        LinearStringMatcher(string, string);
+        LinearCLPMatcher(string&, string&);
         
         void execute();
         void debugOutput();
+
+        int getOccurrences() { return occurrences; }
 };

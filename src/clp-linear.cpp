@@ -1,11 +1,12 @@
 #include <string>
 #include <stdio.h>
-#include "clpsm-linear.h"
-#include "utils.h"
+
+#include "clp-linear.h"
+#include "helpers.h"
 
 using namespace std;
 
-LinearStringMatcher::LinearStringMatcher(string sx, string sy) {    
+LinearCLPMatcher::LinearCLPMatcher(string& sx, string& sy) {   
     z = new int[255];
     
     m = sx.length();
@@ -19,21 +20,22 @@ LinearStringMatcher::LinearStringMatcher(string sx, string sy) {
     y = sy.c_str();
 
     occurrences = 0;
+    printf("initialized matcher\n");
 }
         
-void LinearStringMatcher::preprocessing() {
+void LinearCLPMatcher::preprocessing() {
     for(int s = 0; s < 255; ++s)
         z[s] = -1;
     
     list[0] = -1;
-    z[x[0]] = -1;
+    z[x[0]] = 0;
     for(int i = 1; i < m; ++i) {
         list[i] = z[x[i]];
         z[x[i]] = i;
     }
 }
 
-void LinearStringMatcher::mpPreprocessing() {
+void LinearCLPMatcher::mpPreprocessing() {
     int i = 0, 
         j = mpNext[0] = -1;
 
@@ -45,7 +47,7 @@ void LinearStringMatcher::mpPreprocessing() {
     }
 }
 
-void LinearStringMatcher::kmpPreprocessing() {
+void LinearCLPMatcher::kmpPreprocessing() {
    int i = 0,
        j = kmpNext[0] = -1;
 
@@ -63,7 +65,7 @@ void LinearStringMatcher::kmpPreprocessing() {
    }
 }
 
-int LinearStringMatcher::attempt(int &wall, int &start) {
+int LinearCLPMatcher::attempt(int &wall, int &start) {
     int k = wall - start;
     while(k < m && x[k] == y[wall + k])
         ++k;
@@ -71,17 +73,19 @@ int LinearStringMatcher::attempt(int &wall, int &start) {
     return k;
 }
 
-void LinearStringMatcher::advanceSkip(int &i, int &j) {
+void LinearCLPMatcher::advanceSkip(int &i, int &j) {
     do {    
         j += m;
-    } while(j < n || z[y[j]] < 0);
+    } while(!(j >= n || z[y[j]] >= 0));
 
     if(j < n) 
         i = z[y[j]];
 }
 
-void LinearStringMatcher::search() {
+void LinearCLPMatcher::search() {
     int wall, start, i, j, k, skipStart, kmpStart, lastPIndex;
+
+    occurrences = 0;
 
     wall = 0;
     i = j = -1;
@@ -91,49 +95,59 @@ void LinearStringMatcher::search() {
 
     while(start <= lastPIndex) {
         wall = max(wall, start);
-        k = attempt(wall, start);
+        k = attempt(start, wall);
         wall = start + k;
+
+        printf("search on %i,%i\n", start, wall);
 
         if(k == m) { 
             report(start);
-            i = i - utils::maxPeriod(x, m);
+            i = i - helpers ::maxPeriod(x, m);
         } else i = list[i];
 
         if(i < 0)
             advanceSkip(i, j);
 
+        printf("search 0\n");
+
         skipStart = j - i;
         kmpStart = start + k - kmpNext[k];
         k = kmpNext[k];
 
-        while(skipStart != kmpStart || !(kmpStart < wall && wall < skipStart)) {
+        while(!(skipStart == kmpStart || (kmpStart < wall && wall < skipStart))) {
             if(skipStart < kmpStart) {
                 i = list[i];
                 if(i < 0)
                     advanceSkip(i, j);
+
                 skipStart = j - i;            
             } else {    
-                kmpStart += k - mpNext[k];
+                kmpStart = kmpStart + k - mpNext[k];
                 k = mpNext[k];
             }
+
+            printf("searching start on skipStart: %i, kmpStart: %i, wall: %i, i: %i, j: %i\n", skipStart, kmpStart, wall, i, j);
         }
 
         start = skipStart;
     }
 }
 
-void LinearStringMatcher::report(int index) {
+void LinearCLPMatcher::report(int index) {
     ++occurrences;
 }
 
-void LinearStringMatcher::execute() {
+void LinearCLPMatcher::execute() {
     preprocessing();
     mpPreprocessing();
     kmpPreprocessing();
+    printf("search starting with x: %s, y: %s, m: %i, n: %i\n", x, y, m, n);
+
+    search();
 }
 
-void LinearStringMatcher::debugOutput() {
-    printf("x: %s\ny: %s", x, y);
+void LinearCLPMatcher::debugOutput() {
+    printf("\n-- CLP LINEAR MATCHER --\nx: %s\ny: %s\nm: %i, n: %i", x, y, m, n);
 
     printf("\nz: ");
     for(int s = 0; s < 255; ++s) {
@@ -144,9 +158,8 @@ void LinearStringMatcher::debugOutput() {
     
     printf("\nlist: ");
     for(int i = 0; i < m; ++i) {
-        if(list[i] != -1) {
-            printf("[%c] = %i ", x[i], list[i]);
-        }
+        //if(list[i] != -1)
+            printf("[%c] = %i ", i, list[i]);
     }
 
     printf("\nmpNext: ");
@@ -163,8 +176,6 @@ void LinearStringMatcher::debugOutput() {
         }
     }
 
-    printf("\noccurences: %i", occurrences);
-    
-    printf("\n");
+    printf("\noccurrences: %i\n", occurrences);
 }
 
