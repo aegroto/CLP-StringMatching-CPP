@@ -20,7 +20,6 @@ LinearCLPMatcher::LinearCLPMatcher(string& sx, string& sy) {
     y = sy.c_str();
 
     occurrences = 0;
-    printf("initialized matcher\n");
 }
         
 void LinearCLPMatcher::preprocessing() {
@@ -67,7 +66,7 @@ void LinearCLPMatcher::kmpPreprocessing() {
 
 int LinearCLPMatcher::attempt(int &wall, int &start) {
     int k = wall - start;
-    while(k < m && x[k] == y[wall + k])
+    while(k < m && x[k] == y[k + start])
         ++k;
 
     return k;
@@ -76,60 +75,59 @@ int LinearCLPMatcher::attempt(int &wall, int &start) {
 void LinearCLPMatcher::advanceSkip(int &i, int &j) {
     do {    
         j += m;
-    } while(!(j >= n || z[y[j]] >= 0));
+    } while(j < n && z[y[j]] < 0);
 
     if(j < n) 
         i = z[y[j]];
 }
 
 void LinearCLPMatcher::search() {
-    int wall, start, i, j, k, skipStart, kmpStart, lastPIndex;
+    int wall, start, i, j, k, /*skipStart,*/ kmpStart, period, lastPIndex;
 
-    occurrences = 0;
-
-    wall = 0;
+    occurrences = wall = 0;
     i = j = -1;
+
+    period = m - kmpNext[m];
+
     advanceSkip(i, j);
+
     start = j - i;
+
     lastPIndex = n - m;
 
     while(start <= lastPIndex) {
         wall = max(wall, start);
-        k = attempt(start, wall);
+        k = attempt(wall, start);
         wall = start + k;
 
-        printf("search on %i,%i\n", start, wall);
+        // printf("search on %i,%i\n", start, wall);
 
         if(k == m) { 
             report(start);
-            i = i - helpers ::maxPeriod(x, m);
+            i -= period;
         } else i = list[i];
 
         if(i < 0)
             advanceSkip(i, j);
 
-        printf("search 0\n");
-
-        skipStart = j - i;
         kmpStart = start + k - kmpNext[k];
         k = kmpNext[k];
+        start = j - i;
 
-        while(!(skipStart == kmpStart || (kmpStart < wall && wall < skipStart))) {
-            if(skipStart < kmpStart) {
+        while(start < kmpStart || (kmpStart < start && start < wall)) {
+            if(start < kmpStart) {
                 i = list[i];
                 if(i < 0)
                     advanceSkip(i, j);
 
-                skipStart = j - i;            
+                start = j - i;            
             } else {    
-                kmpStart = kmpStart + k - mpNext[k];
+                kmpStart += k - mpNext[k];
                 k = mpNext[k];
             }
 
-            printf("searching start on skipStart: %i, kmpStart: %i, wall: %i, i: %i, j: %i\n", skipStart, kmpStart, wall, i, j);
-        }
-
-        start = skipStart;
+            // printf("searching start on skipStart: %i, kmpStart: %i, wall: %i, i: %i, j: %i\n", skipStart, kmpStart, wall, i, j);
+        }   
     }
 }
 
@@ -138,11 +136,9 @@ void LinearCLPMatcher::report(int index) {
 }
 
 void LinearCLPMatcher::execute() {
-    preprocessing();
     mpPreprocessing();
     kmpPreprocessing();
-    printf("search starting with x: %s, y: %s, m: %i, n: %i\n", x, y, m, n);
-
+    preprocessing();
     search();
 }
 
@@ -158,8 +154,7 @@ void LinearCLPMatcher::debugOutput() {
     
     printf("\nlist: ");
     for(int i = 0; i < m; ++i) {
-        //if(list[i] != -1)
-            printf("[%c] = %i ", i, list[i]);
+        printf("[%i] = %i ", i, list[i]);
     }
 
     printf("\nmpNext: ");

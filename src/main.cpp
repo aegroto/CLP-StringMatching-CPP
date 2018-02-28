@@ -6,6 +6,8 @@
 
 #include <stdio.h>
 #include <string>
+#include <ctime>
+#include <cstdlib>
 
 #include "helpers.h"
 #include "testutils.h"
@@ -24,7 +26,9 @@ int main() {
     linearclpmatcher.execute();
     linearclpmatcher.debugOutput();*/
 
-    debug::debugOnMP(4, 15, 'a', 'c', 1);
+    srand(time(0));
+
+    debug::debugOnMP(4, 15, 'a', 'c', 1000000);
 
     return 0;
 }
