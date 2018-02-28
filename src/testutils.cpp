@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-#include "clp-linear.h"
+#include "kmp-skipsearch.h"
 #include "mp.h"
 #include "testutils.h"
 
@@ -10,10 +10,10 @@ using namespace std;
 
 char inline debug::randchar(char minChar, char maxChar) { return char((rand() % (maxChar - minChar + 1)) + minChar); }
 
-void debug::debugOnMP(int m, int n, char minChar, char maxChar, int numTests) {
+void debug::debugKMPSSOnMP(int m, int n, char minChar, char maxChar, int numTests) {
     string pattern, text;
     MorrisPrattMatcher *mpmatcher = NULL;
-    LinearCLPMatcher *linearclpmatcher = NULL;
+    KMPSkipSearchMatcher *kmpskipsearchmatcher = NULL;
 
     for(int t = 0; t < numTests; ++t) {
         pattern.clear();
@@ -27,18 +27,18 @@ void debug::debugOnMP(int m, int n, char minChar, char maxChar, int numTests) {
         mpmatcher = new MorrisPrattMatcher(pattern, text);
         mpmatcher->execute();
         
-        linearclpmatcher = new LinearCLPMatcher(pattern, text);
-        linearclpmatcher->execute();
+        kmpskipsearchmatcher = new KMPSkipSearchMatcher(pattern, text);
+        kmpskipsearchmatcher->execute();
 
-        if(mpmatcher->getOccurrences() != linearclpmatcher->getOccurrences()) {
+        if(mpmatcher->getOccurrences() != kmpskipsearchmatcher->getOccurrences()) {
             printf("COMPARING FAILED!\n");
             mpmatcher->debugOutput();
-            linearclpmatcher->debugOutput();
+            kmpskipsearchmatcher->debugOutput();
             
             break;
         }
 
         delete mpmatcher;
-        delete linearclpmatcher;
+        delete kmpskipsearchmatcher;
     }
 }

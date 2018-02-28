@@ -2,13 +2,13 @@
 
 using namespace std;
 
-class LinearCLPMatcher {
+class KMPSkipSearchMatcher {
     private:
         int *z, *list,
-            *mpNext, *kmpNext;
-        
-        int m, n,
+            *mpNext, *kmpNext,            
             occurrences;
+        
+        size_t m, n;
         
         const char *x, *y;
         
@@ -23,7 +23,7 @@ class LinearCLPMatcher {
         void report(int);
 
     public:
-        LinearCLPMatcher(string&, string&);
+        KMPSkipSearchMatcher(string&, string&);
         
         void execute();
         void debugOutput();

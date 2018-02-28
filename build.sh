@@ -1,1 +1,1 @@
-g++ main.cpp clpsm-linear.cpp -o clpsm
+g++ src/main.cpp src/helpers.cpp src/kmp-skipsearch.cpp src/alphatree.cpp src/mp.cpp src/testutils.cpp -o clpsm
