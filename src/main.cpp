@@ -11,22 +11,22 @@
 
 #include "helpers.h"
 #include "testutils.h"
-#include "alphatrie.h"
+#include "alpha-skipsearch.h"
 
 using namespace std;
 
 int main() {
     srand(time(0));
 
-    // debug::debugKMPSSOnMP(4, 15, 'a', 'c', 1000000);
+    debug::debugKMPSSOnMP(4, 15, 'a', 'c', 1000000);
 
-    string pattern ="abcabaa";
-    size_t l = 3;
+    /*string x = "abcabaa";
+    string y = "acbcabcabaabbac";
 
-    AlphaTrie trie(l);
-    for(int i = 0; i < pattern.length() - l + 1; ++i) {
-        trie.addSubstring(&pattern[i], i);
-    }
+    AlphaSkipSearchMatcher alphassm(x, y);
+    alphassm.execute();
+    alphassm.printOutput();*/
+
     return 0;
 }
 

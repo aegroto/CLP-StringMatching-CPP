@@ -23,7 +23,6 @@ void AlphaTrie::AlphaNode::addPos(int pos) {
 AlphaTrie::AlphaTrie(size_t _l) {
     l = _l;
     root = new AlphaNode();
-    root->character='R';
 }
 
 void AlphaTrie::addSubstring(char* sub, int start) {

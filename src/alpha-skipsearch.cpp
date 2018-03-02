@@ -1,26 +1,33 @@
 #include <string>
 #include <stdio.h>
+#include "helpers.h"
+#include "alpha-skipsearch.h"
 
 AlphaSkipSearchMatcher::AlphaSkipSearchMatcher(string& sx, string& sy) {
-    tree = AlphaTree();
-    
     x = sx.c_str();
     y = sy.c_str();
     
     m = sx.length();
     n = sy.length();
-}
-
-AlphaSkipSearchMatcher::preprocessing() {
-    tree = AlphaTree(8 * m);
     
+    occurrences = 0;
 }
 
-AlphaSkipSearchMatcher::search() {
+void AlphaSkipSearchMatcher::preprocessing() {
+    l = helpers::log2(m);
+    trie = new AlphaTrie(l);    
 }
 
-AlphaSkipSearchMatcher::execute() {
+void AlphaSkipSearchMatcher::search() {
 }
 
-AlphaSkipSearchMatcher::debugOutput() {
+void AlphaSkipSearchMatcher::execute() {
+    preprocessing();
+    search();
+}
+
+void AlphaSkipSearchMatcher::printOutput() {
+    printf("\n-- ALPHA SKIP SEARCH MATCHER --\nx: %s\ny: %s\nm: %zu, n: %zu", x, y, m, n);
+
+    printf("\noccurrences: %i\n", occurrences);
 }

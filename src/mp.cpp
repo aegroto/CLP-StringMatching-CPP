@@ -16,6 +16,10 @@ MorrisPrattMatcher::MorrisPrattMatcher(string& sx, string& sy) {
     occurrences = 0; 
 }
 
+MorrisPrattMatcher::~MorrisPrattMatcher() {
+    delete[] mpNext;
+}
+
 void MorrisPrattMatcher::preprocessing() {
    int i, j;
    i = 0;
@@ -57,7 +61,7 @@ void MorrisPrattMatcher::execute() {
     search();
 }
 
-void MorrisPrattMatcher::debugOutput() {
+void MorrisPrattMatcher::printOutput() {
     printf("\n-- MORRIS PRATT MATCHER --\nx: %s\ny: %s", x, y);
 
     printf("\nmpNext: ");

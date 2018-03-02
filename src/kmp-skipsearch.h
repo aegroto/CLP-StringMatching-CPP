@@ -24,9 +24,10 @@ class KMPSkipSearchMatcher {
 
     public:
         KMPSkipSearchMatcher(string&, string&);
-        
+        ~KMPSkipSearchMatcher();
+
         void execute();
-        void debugOutput();
+        void printOutput();
 
         int getOccurrences() { return occurrences; }
 };

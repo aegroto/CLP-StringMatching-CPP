@@ -1,14 +1,24 @@
+#include <string>
+#include "alphatrie.h"
+
+using namespace std;
+
 class AlphaSkipSearchMatcher {
     private:
-        char *x, *y;
-        int m, n;
-        AlphaTree tree;
+        const char *x, *y;
+        size_t m, n;
+        int l, occurrences;
+
+        AlphaTrie *trie;
 
         void preprocessing();
         void search();
+
     public:
         AlphaSkipSearchMatcher(string&, string&);
 
         void execute();
-        void debugOutput();
+        void printOutput();
+
+        int getOccurrences() { return occurrences; }
 };

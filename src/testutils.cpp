@@ -32,8 +32,8 @@ void debug::debugKMPSSOnMP(int m, int n, char minChar, char maxChar, int numTest
 
         if(mpmatcher->getOccurrences() != kmpskipsearchmatcher->getOccurrences()) {
             printf("COMPARING FAILED!\n");
-            mpmatcher->debugOutput();
-            kmpskipsearchmatcher->debugOutput();
+            mpmatcher->printOutput();
+            kmpskipsearchmatcher->printOutput();
             
             break;
         }

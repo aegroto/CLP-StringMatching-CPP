@@ -14,8 +14,9 @@ class MorrisPrattMatcher {
 
     public:
         MorrisPrattMatcher(string&, string&);
+        ~MorrisPrattMatcher();
         
         void execute();
-        void debugOutput();
+        void printOutput();
         int getOccurrences() { return occurrences; }
 };

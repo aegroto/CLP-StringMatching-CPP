@@ -21,6 +21,13 @@ KMPSkipSearchMatcher::KMPSkipSearchMatcher(string& sx, string& sy) {
 
     occurrences = 0;
 }
+
+KMPSkipSearchMatcher::~KMPSkipSearchMatcher() {
+    delete[] z;
+    delete[] list;    
+    delete[] mpNext;
+    delete[] kmpNext;
+}
         
 void KMPSkipSearchMatcher::preprocessing() {
     for(int s = 0; s < 255; ++s)
@@ -138,8 +145,8 @@ void KMPSkipSearchMatcher::execute() {
     search();
 }
 
-void KMPSkipSearchMatcher::debugOutput() {
-    printf("\n-- CLP LINEAR MATCHER --\nx: %s\ny: %s\nm: %zu, n: %zu", x, y, m, n);
+void KMPSkipSearchMatcher::printOutput() {
+    printf("\n-- KMP SKIP SEARCH MATCHER --\nx: %s\ny: %s\nm: %zu, n: %zu", x, y, m, n);
 
     printf("\nz: ");
     for(int s = 0; s < 255; ++s) {

@@ -20,7 +20,7 @@ class AlphaTrie {
                 AlphaNode* get(int c) { return children[c]; } 
                 Position* getFirstPos() { return firstPos; }
 
-                void set(char c, AlphaNode *node) { children[c] = node; node->character=c; }  
+                void set(char c, AlphaNode *node) { children[c] = node; }  
                 void addPos(int);   
         };
 

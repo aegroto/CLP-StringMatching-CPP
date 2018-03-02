@@ -30,3 +30,15 @@ int helpers::maxPeriod(const char* x, int m) {
 
     return 0;
 }
+
+int helpers::log2(int a) {
+    int result = 0, tmp = a;
+
+    while(tmp > 2) {
+        tmp /= 2;
+        ++result;    
+    }
+
+    if(result == 0) result = 1;
+    return result;
+}
