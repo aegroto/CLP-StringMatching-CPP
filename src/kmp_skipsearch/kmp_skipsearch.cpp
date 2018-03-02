@@ -1,8 +1,4 @@
-#include <string>
-#include <stdio.h>
-
-#include "kmp-skipsearch.h"
-#include "helpers.h"
+#include "kmp_skipsearch.h"
 
 using namespace std;
 

@@ -1,7 +1,6 @@
-#include <string>
-#include <stdio.h>
-#include "helpers.h"
-#include "alpha-skipsearch.h"
+#include "alpha_skipsearch.h"
+
+using namespace std;
 
 AlphaSkipSearchMatcher::AlphaSkipSearchMatcher(string& sx, string& sy) {
     x = sx.c_str();

@@ -1,9 +1,3 @@
-#include <string>
-#include <cstdlib>
-#include <stdio.h>
-
-#include "kmp-skipsearch.h"
-#include "mp.h"
 #include "testutils.h"
 
 using namespace std;

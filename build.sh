@@ -1,1 +1,1 @@
-g++ src/main.cpp src/helpers.cpp src/kmp-skipsearch.cpp src/alphatree.cpp src/mp.cpp src/testutils.cpp -o clpsm
+g++ src/*.cpp src/alpha_skipsearch/*.cpp src/alphatrie/*.cpp src/kmp_skipsearch/*.cpp src/mp/*.cpp -o clpsm

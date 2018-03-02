@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <queue>
+#include "../helpers.h"
 
 class AlphaTrie {
     private:

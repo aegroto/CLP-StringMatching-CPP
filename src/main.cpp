@@ -11,7 +11,7 @@
 
 #include "helpers.h"
 #include "testutils.h"
-#include "alpha-skipsearch.h"
+#include "alpha_skipsearch/alpha_skipsearch.h"
 
 using namespace std;
 

@@ -1,5 +1,7 @@
 #include <string>
-#include "alphatrie.h"
+#include <stdio.h>
+#include "../helpers.h"
+#include "../alphatrie/alphatrie.h"
 
 using namespace std;
 

@@ -1,6 +1,4 @@
 #include "alphatrie.h"
-#include "helpers.h"
-#include <queue>
 
 AlphaTrie::AlphaNode::AlphaNode() {
     firstPos = NULL;
