@@ -1,4 +1,12 @@
 #include "alphatrie.h"
+#include "helpers.h"
+#include <queue>
+
+AlphaTrie::AlphaNode::AlphaNode() {
+    firstPos = NULL;
+    for(int i = 0; i < 255; ++i)
+        children[i] = NULL;
+}
 
 void AlphaTrie::AlphaNode::addPos(int pos) {
     if(firstPos != NULL) {
@@ -15,27 +23,53 @@ void AlphaTrie::AlphaNode::addPos(int pos) {
 AlphaTrie::AlphaTrie(size_t _l) {
     l = _l;
     root = new AlphaNode();
+    root->character='R';
 }
 
 void AlphaTrie::addSubstring(char* sub, int start) {
     AlphaNode *node = root,
               *child = NULL;
 
-    int foundChars = 0;
+    size_t foundChars = 0;
     child = node->get(sub[foundChars]);
     
     while(foundChars < l && child != NULL) {
         node = child;        
         child = node->get(sub[foundChars]);
-        printf("%i", foundChars);
         ++foundChars;
     }
     
-    if(foundChars < l) {
+    while(foundChars < l) {
         child = new AlphaNode();
         node->set(sub[foundChars], child);
+        node = child;
         ++foundChars;
     }
     
     child->addPos(start);
 }
+
+/* void AlphaTrie::print() {
+    std::queue<AlphaNode*> Q;
+    
+    Q.push(root);
+
+    while(!Q.empty()) {
+        AlphaNode* current = Q.front();
+        
+        std::queue<AlphaNode*> Qcopy = Q;
+
+
+        printf("%c --> [ ", current->character);
+
+        for(int i = 0; i < 255; ++i) {
+            if(current->get(i) != NULL) {
+                printf("%c ", current->get(i)->character);
+                Q.push(current->get(i));
+            }
+        }
+        
+        printf("]\n");
+        Q.pop();
+    }
+} */

@@ -24,7 +24,9 @@ int main() {
     size_t l = 3;
 
     AlphaTrie trie(l);
-    trie.addSubstring(&pattern[0], 0);
+    for(int i = 0; i < pattern.length() - l + 1; ++i) {
+        trie.addSubstring(&pattern[i], i);
+    }
     return 0;
 }
 

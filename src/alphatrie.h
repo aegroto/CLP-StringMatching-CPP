@@ -14,21 +14,22 @@ class AlphaTrie {
        
                 AlphaNode *children[255];
                 Position *firstPos;
-                
             public:
-                AlphaNode() { firstPos = NULL; }
+                AlphaNode();
 
-                AlphaNode* get(char c) { return children[c]; } 
+                AlphaNode* get(int c) { return children[c]; } 
                 Position* getFirstPos() { return firstPos; }
 
-                void set(char c, AlphaNode *node) { children[c] = node; }  
+                void set(char c, AlphaNode *node) { children[c] = node; node->character=c; }  
                 void addPos(int);   
         };
 
         AlphaNode *root;
-        size_t l; 
+        size_t l;
+
     public:
         AlphaTrie(size_t);
         
-        void addSubstring(char*, int);        
+        void addSubstring(char*, int);
+        //void print();        
 };
