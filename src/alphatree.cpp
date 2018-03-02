@@ -1,4 +1,7 @@
 #include "alphatree.h"
+#include <queue>
+
+using namespace std;
 
 AlphaTree::AlphaNode::AlphaNode() {
     parent = rightSib = firstChild = NULL;
@@ -18,52 +21,77 @@ void AlphaTree::AlphaNode::addPos(int index) {
 AlphaTree::AlphaTree(size_t _l) {
     l = _l;
     root = AlphaTree::AlphaNode();
-    root.setCharacter(0);
+    root.setCharacter('R');
     root.addPos(-1);
 }
 
 void AlphaTree::addSubstring(char* sub) {
     AlphaNode *parentNode = &root,
               *leftNode = NULL,
-              *node = NULL;
+              *node = parentNode->getFirstChild(),
+              *anchorNode = NULL;
 
-    for(size_t i = 0; i < l; ++i) {
-        AlphaNode *node = parentNode->getFirstChild();
+    size_t foundChars = 0;
 
-        while(node != NULL) {
-            if(node->getCharacter() == sub[i]) {
-                leftNode = node->getFirstChild();
-            } else {
-                leftNode = node;
-                node = node->getRightSib();
-            }
-            printf("%c ", leftNode->getCharacter());
+    while(node != NULL) {
+        if(node->getCharacter() == sub[foundChars]) {
+            parentNode = node;
+            leftNode = NULL;
+            node = parentNode->getFirstChild();
+        } else {
+            leftNode = node;
+            node = node->getRightSib();
         }
-
-        node = new AlphaNode();
-        if(leftNode != NULL)
-            leftNode->setRightSib(node);
-
-        parentNode->setFirstChild(node);
-        node->setParent(parentNode);
-        node->setCharacter(sub[i]);     
-        parentNode = node;   
     }
+
+    anchorNode = new AlphaNode();
+    anchorNode->setCharacter(sub[foundChars]);
+    anchorNode->setParent(parentNode);
+
+    if(leftNode != NULL) {
+        // printf("anchor node is %c, left node is %c
+        leftNode->setRightSib(anchorNode);
+    } else {        
+        parentNode->setFirstChild(anchorNode);
+    }
+
+    ++foundChars;
+    
+    while(foundChars < l) {
+        node = new AlphaNode();    
+        node->setCharacter(sub[foundChars]);
+        node->setParent(anchorNode);
+        anchorNode->setFirstChild(node);
+            
+        anchorNode = node;
+        ++foundChars;
+    }   
+
+    print();
 }
 
 void AlphaTree::print() {
-    AlphaNode *node, *rightmostNode;
-    node = rightmostNode = root.getFirstChild();
-    printf("ROOT: %c\n", root.getCharacter());
+    printf("test");
 
-    while(rightmostNode != NULL) {
-        printf("%c [%c] -->", node->getCharacter(), node->getParent()->getCharacter());
-        node = node->getRightSib();
+    queue<AlphaNode*> Q;
+    Q.push(&root);
 
-        if(node == NULL) {
-            rightmostNode = node = rightmostNode->getFirstChild();
-            printf("\n");
+    /*while(!Q.empty()) {
+        AlphaNode *front = Q.front(), *tmp = front->getFirstChild();    
+        printf("front is %c", front->getCharacter()); 
+
+        while(tmp->getRightSib() != NULL) {
+            Q.push(tmp);
+            tmp = tmp->getRightSib();
         }
-    }
+
+        printf("%c -->", front->getCharacter());
+        Q.pop();
+    }*/
 }
+
+
+
+
+
 

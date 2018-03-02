@@ -2,7 +2,7 @@
 #include <cstdlib>
 
 class AlphaTree {
-    private:
+    public:
         class AlphaNode {
             private:
                 class Position {
@@ -42,12 +42,12 @@ class AlphaTree {
 
                 void addPos(int);
         };
-
-        size_t l;
-        AlphaNode root;
-
-    public:
         AlphaTree(size_t);
         void addSubstring(char*);
         void print();
+        AlphaNode getRoot() { return root; }
+
+    private:
+        size_t l;
+        AlphaNode root;
 };
