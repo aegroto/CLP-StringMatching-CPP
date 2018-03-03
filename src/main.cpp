@@ -19,9 +19,9 @@ int main() {
     srand(time(0));
 
     printf("\n");
-    debug::debugKMPSSOnMP(15, 200, 'a', 'c', 10000);
+    debug::debugKMPSSOnMP(15, 200, 'a', 'z', 10000);
     printf("\n");
-    debug::debugAlphaSSOnMP(15, 200, 'a', 'c', 10000);
+    debug::debugAlphaSSOnMP(15, 200, 'a', 'z', 10000);
     printf("\n");
 
     /*string x = "aaab";

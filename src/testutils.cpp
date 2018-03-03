@@ -15,8 +15,9 @@ void debug::debugKMPSSOnMP(int m, int n, char minChar, char maxChar, int numTest
 
     int positiveTests = 0;
 
-    printf("-- TEST UTILS : KMP SKIP SEARCH -- Launching %i tests with patterns and texts of lengths m = %i and n = %i, alphabet is [%c, %c]\n",
+    printf(ES_BRIGHTCYAN "-- TEST UTILS : KMP SKIP SEARCH\n-- Launching %i tests with patterns and texts of lengths m = %i and n = %i, alphabet is [%c, %c]\n",
             numTests, m, n, minChar, maxChar);
+    printf("-- Testing against MORRIS-PRATT\n" ES_RESET);
 
     for(int t = 0; t < numTests; ++t) {
         pattern.clear();
@@ -61,8 +62,9 @@ void debug::debugAlphaSSOnMP(int m, int n, char minChar, char maxChar, int numTe
 
     int positiveTests = 0;
 
-    printf("-- TEST UTILS : ALPHA SKIP SEARCH -- Launching %i tests with patterns and texts of lengths m = %i and n = %i, alphabet is [%c, %c]\n",
+    printf(ES_BRIGHTCYAN "-- TEST UTILS : ALPHA SKIP SEARCH --\n-- Launching %i tests with patterns and texts of lengths m = %i and n = %i, alphabet is [%c, %c]\n",
             numTests, m, n, minChar, maxChar);
+    printf("-- Testing against MORRIS-PRATT\n" ES_RESET);
 
     for(int t = 0; t < numTests; ++t) {
         pattern.clear();
