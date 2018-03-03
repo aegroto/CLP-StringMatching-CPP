@@ -9,6 +9,8 @@ void debug::debugKMPSSOnMP(int m, int n, char minChar, char maxChar, int numTest
     MorrisPrattMatcher *mpmatcher = NULL;
     KMPSkipSearchMatcher *kmpskipsearchmatcher = NULL;
 
+    int positiveTests = 0;
+
     for(int t = 0; t < numTests; ++t) {
         pattern.clear();
         text.clear();
@@ -25,14 +27,21 @@ void debug::debugKMPSSOnMP(int m, int n, char minChar, char maxChar, int numTest
         kmpskipsearchmatcher->execute();
 
         if(mpmatcher->getOccurrences() != kmpskipsearchmatcher->getOccurrences()) {
-            printf("COMPARING FAILED!\n");
+            printf(ES_RED "COMPARING FAILED!\n" ES_CYAN);
             mpmatcher->printOutput();
             kmpskipsearchmatcher->printOutput();
-            
+            printf("\n");
             break;
-        }
+        } else ++positiveTests;
 
         delete mpmatcher;
         delete kmpskipsearchmatcher;
     }
+
+    if(positiveTests < numTests)
+        printf(ES_RED "[FAIL] ");
+    else
+        printf(ES_GREEN "[SUCCESS] ");
+
+    printf("KMPss VS MP : %i correct tests on %i\n" ES_RESET, positiveTests, numTests);
 }

@@ -4,6 +4,7 @@
 
 #include "kmp_skipsearch/kmp_skipsearch.h"
 #include "mp/mp.h"
+#include "escape_sequences.h"
 
 using namespace std;
 
