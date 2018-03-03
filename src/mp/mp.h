@@ -1,3 +1,6 @@
+#ifndef MP_H
+#define MP_H
+
 #include <string>
 
 using namespace std;
@@ -20,3 +23,5 @@ class MorrisPrattMatcher {
         void printOutput();
         int getOccurrences() { return occurrences; }
 };
+
+#endif

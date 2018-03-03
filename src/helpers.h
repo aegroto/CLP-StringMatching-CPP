@@ -1,4 +1,7 @@
 /** utils functions file **/
+#ifndef HELPERS_h
+#define HELPERS_h
+
 #include <queue>
 
 namespace helpers {
@@ -7,3 +10,4 @@ namespace helpers {
     int log2(int);
 };
 
+#endif

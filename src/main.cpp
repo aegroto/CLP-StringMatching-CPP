@@ -18,12 +18,41 @@ using namespace std;
 int main() {
     srand(time(0));
 
-    debug::debugKMPSSOnMP(4, 15, 'a', 'c', 1000000);
+    printf("\n");
+    debug::debugKMPSSOnMP(15, 200, 'a', 'c', 10000);
+    printf("\n");
+    debug::debugAlphaSSOnMP(15, 200, 'a', 'c', 10000);
+    printf("\n");
 
-    /*string x = "abcabaa";
-    string y = "acbcabcabaabbac";
+    /*string x = "aaab";
+    string y = "bccbaaaaaaccaac";*/
 
-    AlphaSkipSearchMatcher alphassm(x, y);
+    /*int m = x.length();
+    int l = helpers::log2(m);
+
+    AlphaTrie trie(l);
+    
+    printf("l is %i\n", l);*/
+
+    /*printf("adding substring at index 0\n");
+    trie.addSubstring(&x[0], 0);
+
+    /*printf("adding substring at index 1\n");
+    trie.addSubstring(&x[1], 1);
+
+    /*printf("adding substring at index 2\n");
+    trie.addSubstring(&x[2], 2);*/
+
+    /*for(int i = 0; i < m - l + 1; ++i) {
+        printf("adding substring at index %i\n", i);
+
+        trie.addSubstring(&x[i], i); 
+        trie.print();
+
+        printf("\n");
+    }*/
+
+    /*AlphaSkipSearchMatcher alphassm(x, y);
     alphassm.execute();
     alphassm.printOutput();*/
 

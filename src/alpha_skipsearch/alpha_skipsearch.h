@@ -1,3 +1,6 @@
+#ifndef ALPHA_SKIPSEARCH_H
+#define ALPHA_SKIPSEARCH_H
+
 #include <string>
 #include <stdio.h>
 #include "../helpers.h"
@@ -14,8 +17,10 @@ class AlphaSkipSearchMatcher {
         AlphaTrie *trie;
 
         void preprocessing();
+        bool attempt(int);
         void search();
 
+        void report(int);
     public:
         AlphaSkipSearchMatcher(string&, string&);
 
@@ -24,3 +29,5 @@ class AlphaSkipSearchMatcher {
 
         int getOccurrences() { return occurrences; }
 };
+
+#endif

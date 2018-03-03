@@ -1,3 +1,6 @@
+#ifndef KMP_SKIPSEARCH_H
+#define KMP_SKIPSEARCH_H
+
 #include <string>
 #include <stdio.h>
 #include "../helpers.h"
@@ -33,3 +36,5 @@ class KMPSkipSearchMatcher {
 
         int getOccurrences() { return occurrences; }
 };
+
+#endif
