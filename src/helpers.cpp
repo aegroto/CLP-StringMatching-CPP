@@ -26,11 +26,11 @@ int helpers::maxPeriod(const char* x, int m) {
     return 0;
 }
 
-int helpers::log2(int a) {
+int helpers::log(int a, int base) {
     int result = 1, tmp = a;
 
-    while(tmp > 2) {
-        tmp /= 2;
+    while(tmp > base) {
+        tmp /= base;
         ++result;    
     }
 

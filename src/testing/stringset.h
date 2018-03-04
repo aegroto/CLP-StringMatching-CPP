@@ -12,7 +12,7 @@ class StringSet {
 
     public:
         const char minChar, maxChar;
-        const size_t minM, maxM, minN, maxN, dim;
+        const size_t minM, maxM, minN, maxN, dim, alphabetSize;
 
         StringSet(size_t, size_t, size_t, size_t, char, char, size_t);
         ~StringSet();

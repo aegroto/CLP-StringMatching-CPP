@@ -19,12 +19,12 @@ int main() {
     srand(time(0));
 
     printf("Generating string set...\n");
-    StringSet stringSet(10, 15, 100, 200, 'a', 'c', 1000000);
+    StringSet stringSet(10, 20, 50000, 50000, 'a', 'b', 1000);
 
     /*printf("\n");
     debug::testKMPSSOnMP(stringSet);
-    printf("\n");
-    debug::testAlphaSSOnMP(stringSet);
+    printf("\n");*/
+    /*debug::testAlphaSSOnMP(stringSet);
     printf("\n");*/
 
     debug::fullCompare(stringSet);

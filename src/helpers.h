@@ -15,7 +15,7 @@ namespace helpers {
     }
 
     int maxPeriod(const char*, int);
-    int log2(int);
+    int log(int, int);
 };
 
 #endif

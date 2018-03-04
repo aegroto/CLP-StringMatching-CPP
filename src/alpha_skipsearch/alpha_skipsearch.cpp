@@ -2,13 +2,15 @@
 
 using namespace std;
 
-AlphaSkipSearchMatcher::AlphaSkipSearchMatcher(string& sx, string& sy) {
+AlphaSkipSearchMatcher::AlphaSkipSearchMatcher(string& sx, string& sy, size_t _sigma) {
     x = sx.c_str();
     y = sy.c_str();
     
     m = sx.length();
     n = sy.length();
     
+    sigma = _sigma;
+
     occurrences = 0;
 
     executed = false;
@@ -19,7 +21,7 @@ AlphaSkipSearchMatcher::~AlphaSkipSearchMatcher() {
 }
 
 void AlphaSkipSearchMatcher::preprocessing() {
-    l = helpers::log2(m);
+    l = helpers::log(m, sigma);
 
     trie = new AlphaTrie(l);  
     for(int i = 0; i < m - l + 1; ++i) {

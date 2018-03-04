@@ -11,7 +11,7 @@ using namespace std;
 class AlphaSkipSearchMatcher {
     private:
         const char *x, *y;
-        size_t m, n;
+        size_t m, n, sigma;
         int l, occurrences;
 
         bool executed;
@@ -24,7 +24,7 @@ class AlphaSkipSearchMatcher {
 
         void report(int);
     public:
-        AlphaSkipSearchMatcher(string&, string&);
+        AlphaSkipSearchMatcher(string&, string&, size_t);
         ~AlphaSkipSearchMatcher();
         
         void execute();

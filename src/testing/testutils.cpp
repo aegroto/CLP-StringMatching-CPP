@@ -53,7 +53,7 @@ void debug::testAlphaSSOnMP(StringSet &stringSet) {
         mpm = new MorrisPrattMatcher(stringSet.getPattern(t), stringSet.getText(t));
         mpm->execute();
 
-        alphassm = new AlphaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t));
+        alphassm = new AlphaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.alphabetSize);
         alphassm->execute();
 
         if(mpm->getOccurrences() != alphassm->getOccurrences()) {
@@ -113,7 +113,7 @@ void debug::fullCompare(StringSet& stringSet) {
     AlphaSkipSearchMatcher *alphassm = NULL;
     currentTime = clock();
     for(t = 0; t < stringSet.dim; ++t) {
-        alphassm = new AlphaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t));
+        alphassm = new AlphaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.alphabetSize);
         alphassm->execute();
         delete alphassm;
     }
