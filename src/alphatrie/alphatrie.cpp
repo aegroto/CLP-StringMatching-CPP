@@ -8,6 +8,10 @@ AlphaTrie::AlphaTrie(size_t _l) {
 #endif
 }
 
+AlphaTrie::~AlphaTrie() {
+    delete root;
+}
+
 void AlphaTrie::addSubstring(const char* sub, int start) {
     AlphaNode *node = root,
               *child = NULL;
@@ -38,9 +42,6 @@ void AlphaTrie::addSubstring(const char* sub, int start) {
         node->addPos(start);
     else
         child->addPos(start);
-    // printf("Added position %i at character %c \n", child->getFirstPos()->pos, child->character);
-
-    //print();
 }
 
 #ifdef DEBUG_TRIE

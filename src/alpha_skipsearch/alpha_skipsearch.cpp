@@ -10,6 +10,12 @@ AlphaSkipSearchMatcher::AlphaSkipSearchMatcher(string& sx, string& sy) {
     n = sy.length();
     
     occurrences = 0;
+
+    executed = false;
+}
+
+AlphaSkipSearchMatcher::~AlphaSkipSearchMatcher() {
+    delete trie;
 }
 
 void AlphaSkipSearchMatcher::preprocessing() {
@@ -17,8 +23,7 @@ void AlphaSkipSearchMatcher::preprocessing() {
 
     trie = new AlphaTrie(l);  
     for(int i = 0; i < m - l + 1; ++i) {
-        trie->addSubstring(&x[i], i); 
-        //trie->print();
+        trie->addSubstring(&x[i], i);
     }
 }
 
@@ -32,31 +37,25 @@ bool AlphaSkipSearchMatcher::attempt(int start) {
 }
 
 void AlphaSkipSearchMatcher::search() {
-    int i, j, k, limit;
+    int i, j, k;
     AlphaNode* node;
     
     j = m - l;
-    limit = n - l;
+    const int limit = n - l;
 
-    //printf("search initialized\n");
     while(j < limit) {
         node = trie->getRoot();
 
-        // printf("j is %i, node is %c \n", j, node->character);
-
         for(k = 0; k < l && node != NULL; ++k) {
-            //printf("searching for %c \n", y[j+k]);
             node = node->get(y[j+k]);
         }
 
         if(node != NULL) {
             AlphaNode::Position* position = node->getFirstPos();
 
-            // printf("position is %i\n", position);
             while(position != NULL) {
                 i = position->pos;
 
-                // printf("checking position %i\n", i);
                 if(attempt(j - i)) {
                     report(j - i);
                 }
@@ -74,8 +73,10 @@ void AlphaSkipSearchMatcher::report(int index) {
 }
 
 void AlphaSkipSearchMatcher::execute() {
+    if(executed) return;
     preprocessing();
     search();
+    executed = true;
 }
 
 void AlphaSkipSearchMatcher::printOutput() {

@@ -14,6 +14,8 @@ class AlphaSkipSearchMatcher {
         size_t m, n;
         int l, occurrences;
 
+        bool executed;
+
         AlphaTrie *trie;
 
         void preprocessing();
@@ -23,7 +25,8 @@ class AlphaSkipSearchMatcher {
         void report(int);
     public:
         AlphaSkipSearchMatcher(string&, string&);
-
+        ~AlphaSkipSearchMatcher();
+        
         void execute();
         void printOutput();
 

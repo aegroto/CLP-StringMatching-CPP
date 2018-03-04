@@ -16,6 +16,8 @@ KMPSkipSearchMatcher::KMPSkipSearchMatcher(string& sx, string& sy) {
     y = sy.c_str();
 
     occurrences = 0;
+
+    executed = false;
 }
 
 KMPSkipSearchMatcher::~KMPSkipSearchMatcher() {
@@ -135,10 +137,12 @@ void KMPSkipSearchMatcher::report(int index) {
 }
 
 void KMPSkipSearchMatcher::execute() {
+    if(executed) return;
     mpPreprocessing();
     kmpPreprocessing();
     preprocessing();
     search();
+    executed = true;
 }
 
 void KMPSkipSearchMatcher::printOutput() {

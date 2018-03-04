@@ -14,6 +14,8 @@ MorrisPrattMatcher::MorrisPrattMatcher(string& sx, string& sy) {
     mpNext = new int[m + 1];   
 
     occurrences = 0; 
+
+    executed = false;
 }
 
 MorrisPrattMatcher::~MorrisPrattMatcher() {
@@ -57,8 +59,10 @@ void MorrisPrattMatcher::report(int index) {
 }
 
 void MorrisPrattMatcher::execute() {
+    if(executed) return;
     preprocessing();
     search();
+    executed = true;
 }
 
 void MorrisPrattMatcher::printOutput() {

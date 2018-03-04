@@ -16,6 +16,8 @@ class KMPSkipSearchMatcher {
         size_t m, n;
         
         const char *x, *y;
+
+        bool executed;
         
         void preprocessing();
         void mpPreprocessing();

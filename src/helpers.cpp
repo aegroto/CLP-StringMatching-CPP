@@ -1,9 +1,4 @@
-#include <stdio.h>
 #include "helpers.h"
-
-inline int& helpers::max(int& a, int& b) { 
-    return a > b ? a : b; 
-}
 
 int helpers::maxPeriod(const char* x, int m) {
     int p = m-1;

@@ -7,10 +7,11 @@ class AlphaNode {
     public:
         class Position {
             public:
-                int pos;
+                const int pos;
                 Position* nextPos;
 
-                Position(int _pos) { nextPos = NULL; pos = _pos; }
+                Position(int);
+                ~Position();
         };
         
     private:     
@@ -22,6 +23,7 @@ class AlphaNode {
         char character;
 #endif
         AlphaNode();
+        ~AlphaNode();
 
         inline AlphaNode* get(int c) { return children[c]; } 
         Position* getFirstPos() { return firstPos; }

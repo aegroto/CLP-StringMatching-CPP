@@ -11,6 +11,8 @@ class MorrisPrattMatcher {
         int m, n, occurrences;
         int *mpNext;
 
+        bool executed;
+
         void preprocessing();
         void search();
         void report(int);
