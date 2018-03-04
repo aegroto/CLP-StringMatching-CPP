@@ -19,7 +19,7 @@ int main() {
     srand(time(0));
 
     printf("Generating string set...\n");
-    StringSet stringSet(10, 20, 50000, 50000, 'a', 'b', 1000);
+    StringSet stringSet(100, 200, 10000, 20000, 'a', 'b', 1000);
 
     /*printf("\n");
     debug::testKMPSSOnMP(stringSet);

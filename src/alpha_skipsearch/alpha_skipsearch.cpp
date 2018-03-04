@@ -39,11 +39,13 @@ bool AlphaSkipSearchMatcher::attempt(int start) {
 }
 
 void AlphaSkipSearchMatcher::search() {
-    int i, j, k;
+    int i, j, k, start;
     AlphaNode* node;
     
     j = m - l;
-    const int limit = n - l;
+    
+    const int limit = n - l, 
+              shift = m - l + 1;
 
     while(j < limit) {
         node = trie->getRoot();
@@ -56,17 +58,17 @@ void AlphaSkipSearchMatcher::search() {
             AlphaNode::Position* position = node->getFirstPos();
 
             while(position != NULL) {
-                i = position->pos;
+                start =  j - position->pos;
 
-                if(attempt(j - i)) {
-                    report(j - i);
+                if(attempt(start)) {
+                    report(start);
                 }
 
                 position = position->nextPos;
             }
         } 
 
-        j = j + m - l + 1;
+        j += shift;
     }
 }
 

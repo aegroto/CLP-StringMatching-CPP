@@ -23,35 +23,33 @@ MorrisPrattMatcher::~MorrisPrattMatcher() {
 }
 
 void MorrisPrattMatcher::preprocessing() {
-   int i, j;
-   i = 0;
-   j = mpNext[0] = -1;
+    int i, j;
+    i = 0;
+    j = mpNext[0] = -1;
 
-   while (i < m) {
-      while (j >= 0 && x[i] != x[j])
-         j = mpNext[j];
-
-      mpNext[++i] = ++j;
-   }
+    while (i < m) {
+        while (j >= 0 && x[i] != x[j])
+            j = mpNext[j];
+        mpNext[++i] = ++j;
+    }
 }
 
 void MorrisPrattMatcher::search() {
-   int i , j;
+   int i, j;
 
    i = j = occurrences = 0;
 
-   while (j < n) {
-      while (i >= 0 && x[i] != y[j])
-         i = mpNext[i];
+    while (j < n) {
+        while (i >= 0 && x[i] != y[j])
+            i = mpNext[i];
 
-      ++i;
-      ++j;
+        ++i; ++j;
 
-      if (i >= m) {
-         report(j - i);
-         i = mpNext[i];
-      }
-   }
+        if (i >= m) {
+            report(j - i);
+            i = mpNext[i];
+        }
+    }
 }
 
 void MorrisPrattMatcher::report(int index) {
