@@ -1,3 +1,7 @@
+/**
+ * "AlphaTrie" class definition file
+**/
+
 #include "alphatrie.h"
 
 AlphaTrie::AlphaTrie(size_t _l) {

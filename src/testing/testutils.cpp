@@ -1,3 +1,7 @@
+/**
+ * "TestUtils" namespace definition file
+**/
+
 #include "testutils.h"
 
 using namespace std;

@@ -1,3 +1,7 @@
+/**
+ * "KMPSkipSearchMatcher" class header file
+**/
+
 #ifndef KMP_SKIPSEARCH_H
 #define KMP_SKIPSEARCH_H
 

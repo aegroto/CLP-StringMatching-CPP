@@ -1,3 +1,7 @@
+/**
+ * "MorrisPrattMatcher" class definition file
+**/
+
 #include <string>
 #include <stdio.h>
 #include "mp.h"

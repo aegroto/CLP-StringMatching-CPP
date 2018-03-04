@@ -1,3 +1,7 @@
+/**
+ * "helpers" namespace definition file
+**/
+
 #include "helpers.h"
 
 int helpers::maxPeriod(const char* x, int m) {

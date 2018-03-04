@@ -1,3 +1,7 @@
+/**
+ * "KMPSkipSearchMatcher" class definition file
+**/
+
 #include "kmp_skipsearch.h"
 
 using namespace std;
@@ -52,21 +56,20 @@ void KMPSkipSearchMatcher::mpPreprocessing() {
 }
 
 void KMPSkipSearchMatcher::kmpPreprocessing() {
-   int i = 0,
-       j = kmpNext[0] = -1;
+    int i = 0,
+        j = kmpNext[0] = -1;
 
-   while (i < m) {
-      while (j >= 0 && x[i] != x[j])
-         j = kmpNext[j];
+    while (i < m) {
+        while (j >= 0 && x[i] != x[j])
+            j = kmpNext[j];
 
-      ++i; 
-      ++j;
+        ++i; ++j;
 
-      if (i<m && x[i] == x[j])
-         kmpNext[i] = kmpNext[j];
-      else
-         kmpNext[i] = j;
-   }
+        if (i<m && x[i] == x[j])
+            kmpNext[i] = kmpNext[j];
+        else
+            kmpNext[i] = j;
+    }
 }
 
 int KMPSkipSearchMatcher::attempt(int &wall, int &start) {

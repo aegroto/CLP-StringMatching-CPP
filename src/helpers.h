@@ -1,4 +1,7 @@
-/** utils functions file **/
+/**
+ * "helpers" namespace header file
+**/
+
 #ifndef HELPERS_H
 #define HELPERS_H
 

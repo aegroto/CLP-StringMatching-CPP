@@ -1,3 +1,7 @@
+/**
+ * "MorrisPrattMatcher" class header file
+**/
+
 #ifndef MP_H
 #define MP_H
 

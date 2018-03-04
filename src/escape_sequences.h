@@ -1,4 +1,7 @@
-// escape sequences for terminal output formatting
+/**
+ * Escape sequences for terminal output formatting
+**/
+
 #ifndef ESCAPE_SEQUENCES_H
 #define ESCAPE_SEQUENCES_H
 

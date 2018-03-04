@@ -1,3 +1,7 @@
+/**
+ * "AlphaSkipSearchMatcher" class header file
+**/
+
 #ifndef ALPHA_SKIPSEARCH_H
 #define ALPHA_SKIPSEARCH_H
 

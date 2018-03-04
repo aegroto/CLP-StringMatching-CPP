@@ -1,6 +1,6 @@
 /**
- * A very fast string matching algorithm for small alphabets and long patterns
- * Paper and Algorithm by Charras, Lecroq, Pehoushek.
+ * Skip Search - A very fast string matching algorithm for small alphabets and long patterns
+ * Original Algorithm by C. Charras, T. Lecroq, J. D. Pehoushek.
  * C++ implementation by Lorenzo Catania and Valentino Merlino
 **/
 
@@ -19,7 +19,7 @@ int main() {
     srand(time(0));
 
     printf("Generating string set...\n");
-    StringSet stringSet(100, 200, 10000, 20000, 'a', 'b', 1000);
+    StringSet stringSet(1000, 2000, 10000, 20000, 'a', 'b', 1000);
 
     /*printf("\n");
     debug::testKMPSSOnMP(stringSet);

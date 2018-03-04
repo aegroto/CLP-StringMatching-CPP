@@ -1,3 +1,7 @@
+/**
+ * "AlphaNode" class definition file
+**/
+
 #include "alphanode.h"
 #include <stdio.h>
 

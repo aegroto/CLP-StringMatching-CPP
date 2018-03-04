@@ -1,3 +1,7 @@
+/**
+ * "AlphaSkipSearchMathcer" class definition file
+**/
+
 #include "alpha_skipsearch.h"
 
 using namespace std;

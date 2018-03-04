@@ -1,3 +1,7 @@
+/**
+ * "AlphaTrie" class header file
+**/
+
 #ifndef ALPHATRIE_H
 #define ALPHATRIE_H
 

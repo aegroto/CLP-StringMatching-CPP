@@ -1,3 +1,7 @@
+/**
+ * "debug" namespace header file
+**/
+
 #ifndef TESTUTILS_H
 #define TESTUTILS_H
 

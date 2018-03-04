@@ -1,3 +1,7 @@
+/**
+ * "StringSet" class definition file
+**/
+
 #include "stringset.h"
 #include <iostream>
 

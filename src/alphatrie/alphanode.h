@@ -1,3 +1,7 @@
+/**
+ * "AlphaNode" class header file
+**/
+
 #ifndef ALPHANODE_H
 #define ALPHANODE_H
 

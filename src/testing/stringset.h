@@ -1,3 +1,7 @@
+/**
+ * "StringSet" class header file
+**/
+
 #ifndef STRINGSET_H
 #define STRINGSET_H
 
