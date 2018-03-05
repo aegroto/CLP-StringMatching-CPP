@@ -5,6 +5,8 @@
 #ifndef ALPHANODE_H
 #define ALPHANODE_H
 
+#define DEBUG
+
 #include <cstddef>
 
 class AlphaNode {
@@ -23,7 +25,7 @@ class AlphaNode {
         Position *firstPos;
 
     public:
-#ifdef DEBUG_TRIE
+#ifdef DEBUG
         char character;
 #endif
         AlphaNode();

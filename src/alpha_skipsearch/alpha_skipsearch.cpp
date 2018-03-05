@@ -43,7 +43,7 @@ bool AlphaSkipSearchMatcher::attempt(int start) {
 }
 
 void AlphaSkipSearchMatcher::search() {
-    int i, j, k, start;
+    int j, k, start;
     AlphaNode* node;
     
     j = m - l;

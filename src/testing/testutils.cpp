@@ -80,6 +80,43 @@ void debug::testAlphaSSOnMP(StringSet &stringSet) {
     printf("Alpha Skip search VS MP : %zu correct tests on %zu\n" ES_RESET, t, stringSet.dim);
 }
 
+void debug::testBetaSSOnMP(StringSet &stringSet) {
+    MorrisPrattMatcher *mpm = NULL;
+    BetaSkipSearchMatcher *betassmp = NULL;
+
+    size_t t = 0;
+
+    printf(ES_BRIGHTCYAN "-- TEST UTILS : BETA SKIP SEARCH\n-- Launching %zu tests with patterns and texts of lengths m = (%zu, %zu) and n = (%zu, %zu), alphabet is [%c, %c]\n",
+            stringSet.dim, stringSet.minM, stringSet.maxM, stringSet.minN, stringSet.maxN, stringSet.minChar, stringSet.maxChar);
+    printf("-- Testing against MORRIS-PRATT\n" ES_RESET);
+
+    for(t = 0; t < stringSet.dim; ++t) {
+        mpm = new MorrisPrattMatcher(stringSet.getPattern(t), stringSet.getText(t));
+        mpm->execute();
+
+        betassmp = new BetaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.alphabetSize);
+        betassmp->execute();
+
+        if(mpm->getOccurrences() != betassmp->getOccurrences()) {
+            printf(ES_RED "COMPARING FAILED!\n" ES_RESET);
+            mpm->printOutput();
+            betassmp->printOutput();
+            printf("\n");
+            break;
+        }
+
+        delete mpm;
+        delete betassmp;
+    }
+
+    if(t < stringSet.dim)
+        printf(ES_RED "[FAIL] ");
+    else
+        printf(ES_GREEN "[SUCCESS] ");
+
+    printf("Beta Skip search VS MP : %zu correct tests on %zu\n" ES_RESET, t, stringSet.dim);
+}
+
 void debug::fullCompare(StringSet& stringSet) {
     clock_t currentTime = 0, mpmTime = 0, kmpssTime = 0, alphassTime = 0;    
     size_t t = 0;
