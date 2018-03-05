@@ -118,7 +118,7 @@ void debug::testBetaSSOnMP(StringSet &stringSet) {
 }
 
 void debug::fullCompare(StringSet& stringSet) {
-    clock_t currentTime = 0, mpmTime = 0, kmpssTime = 0, alphassTime = 0;    
+    clock_t currentTime = 0, mpmTime = 0, kmpssTime = 0, alphassTime = 0, betassTime = 0;  
     size_t t = 0;
 
     printf(ES_BRIGHTCYAN "-- TEST UTILS : FULL COMPARE\n");
@@ -160,4 +160,16 @@ void debug::fullCompare(StringSet& stringSet) {
     }
     alphassTime = clock() - currentTime;
     printf("-- " ES_BRIGHTMAGENTA "Alpha Skip Search " ES_BRIGHTCYAN "made up the challenge in " ES_BRIGHTMAGENTA "%fs\n\n" ES_BRIGHTCYAN, double(alphassTime) / CLOCKS_PER_SEC);
+
+    printf("-- Measuring performances of BETA SKIP SEARCH\n");
+    BetaSkipSearchMatcher *betassm = NULL;
+    currentTime = clock();
+    for(t = 0; t < stringSet.dim; ++t) {
+        betassm = new BetaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.alphabetSize);
+        betassm->execute();
+        delete betassm;
+    }
+    betassTime = clock() - currentTime;
+    printf("-- " ES_BRIGHTMAGENTA "Beta Skip Search " ES_BRIGHTCYAN "made up the challenge in " ES_BRIGHTMAGENTA "%fs\n\n" ES_BRIGHTCYAN, double(betassTime) / CLOCKS_PER_SEC);
+
 }

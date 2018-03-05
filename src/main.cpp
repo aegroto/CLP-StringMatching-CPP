@@ -21,16 +21,15 @@ int main() {
     srand(time(0));
 
     printf("Generating string set...\n");
-    StringSet stringSet(30, 50, 1500, 2000, 'a', 'c', 10000);
+    StringSet stringSet(500, 700, 100000, 200000, 'a', 'c', 1000);
 
-
-    debug::testBetaSSOnMP(stringSet);
+    /*debug::testBetaSSOnMP(stringSet);
     printf("\n");
 
     debug::testAlphaSSOnMP(stringSet);
-    printf("\n");
+    printf("\n");*/
 
-    //debug::fullCompare(stringSet);
+    debug::fullCompare(stringSet);
 
     /*string pattern = "ccc";
     string text = "aababacacabaacaccccb";

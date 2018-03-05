@@ -1,0 +1,77 @@
+-- String set has 1000 strings, with patterns and texts of lengths m = (100, 200) and n = (10000, 20000), alphabet is [a, c].
+
+-- Measuring performances of MORRIS-PRATT
+-- Morris-Pratt made up the challenge in 0.158519s
+
+-- Measuring performances of KMP SKIP SEARCH
+-- KMP Skip Search made up the challenge in 0.131314s
+
+-- Measuring performances of ALPHA SKIP SEARCH
+-- Alpha Skip Search made up the challenge in 0.291280s
+
+-- Measuring performances of BETA SKIP SEARCH
+-- Beta Skip Search made up the challenge in 0.164520s
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (100, 200) and n = (100000, 200000), alphabet is [a, c].
+
+-- Measuring performances of MORRIS-PRATT
+-- Morris-Pratt made up the challenge in 1.544505s
+
+-- Measuring performances of KMP SKIP SEARCH
+-- KMP Skip Search made up the challenge in 1.226501s
+
+-- Measuring performances of ALPHA SKIP SEARCH
+-- Alpha Skip Search made up the challenge in 0.341735s
+
+-- Measuring performances of BETA SKIP SEARCH
+-- Beta Skip Search made up the challenge in 0.881477s
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (100, 200) and n = (10000, 20000), alphabet is [a, c].
+
+-- Measuring performances of MORRIS-PRATT
+-- Morris-Pratt made up the challenge in 0.158611s
+
+-- Measuring performances of KMP SKIP SEARCH
+-- KMP Skip Search made up the challenge in 0.127287s
+
+-- Measuring performances of ALPHA SKIP SEARCH
+-- Alpha Skip Search made up the challenge in 0.290227s
+
+-- Measuring performances of BETA SKIP SEARCH
+-- Beta Skip Search made up the challenge in 0.165256s
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (500, 700) and n = (10000, 20000), alphabet is [a, c].
+
+-- Measuring performances of MORRIS-PRATT
+-- Morris-Pratt made up the challenge in 0.161516s
+
+-- Measuring performances of KMP SKIP SEARCH
+-- KMP Skip Search made up the challenge in 0.134188s
+
+-- Measuring performances of ALPHA SKIP SEARCH
+-- Alpha Skip Search made up the challenge in 1.187489s
+
+-- Measuring performances of BETA SKIP SEARCH
+-- Beta Skip Search made up the challenge in 1.184080s
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (500, 700) and n = (10000, 20000), alphabet is [a, z].
+
+-- Measuring performances of MORRIS-PRATT
+-- Morris-Pratt made up the challenge in 0.102613s
+
+-- Measuring performances of KMP SKIP SEARCH
+-- KMP Skip Search made up the challenge in 0.023800s
+
+-- Measuring performances of ALPHA SKIP SEARCH
+-- Alpha Skip Search made up the challenge in 0.612611s
+
+-- Measuring performances of BETA SKIP SEARCH
+-- Beta Skip Search made up the challenge in 0.555729s
