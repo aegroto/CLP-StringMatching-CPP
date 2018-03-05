@@ -25,7 +25,7 @@ BetaSkipSearchMatcher::~BetaSkipSearchMatcher() {
 void BetaSkipSearchMatcher::preprocessing() {
     l = helpers::log(m, sigma);
     
-    trie = new BetaTrie(x, m, sigma);
+    trie = new BetaTrie(x, m, l);
 }
 
 bool BetaSkipSearchMatcher::attempt(int start) {
@@ -42,17 +42,17 @@ void BetaSkipSearchMatcher::search() {
 
     j = m - l;
     
-    const int limit = n - l, 
+    const int limit = n - l + 1, 
               shift = m - l + 1;
 
     while(j < limit) {
         int subIndex = -1;
 
+        //printf("j is %i\n", j);
         for(i = 0; i < shift; ++i) {
             k = 0;
-            while(k < l && x[k] == y[j + k]) {
+            while(k < l && x[i + k] == y[j + k]) {
                 ++k;
-                printf("%c", x[k]);
             }
 
             if(k == l) {
@@ -61,15 +61,15 @@ void BetaSkipSearchMatcher::search() {
             }
         }
 
-        printf("\nsubindex is %i\n", subIndex);
+        //printf("\nsubindex is %i\n", subIndex);
 
         if(subIndex >= 0) {
             BetaTrie::BetaPosition* position = trie->getSubPos(subIndex);
 
             while(position != NULL) {
-                start =  j - position->pos;
+                start = j - position->pos;
 
-                printf("attempt at %i\n", start);
+                //printf("attempt at %i\n", start);
                 if(attempt(start)) {
                     report(start);
                 }

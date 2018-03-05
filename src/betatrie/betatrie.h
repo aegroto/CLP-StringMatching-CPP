@@ -29,7 +29,7 @@ class BetaTrie {
         ~BetaTrie();
 
         size_t getArraySize() { return arraySize; }
-        inline BetaPosition* getSubPos(int i) { return subPos[i]; }
+        BetaPosition* getSubPos(int i) { return subPos[i]; }
         
 #ifdef DEBUG
         void print(const char*, size_t);  

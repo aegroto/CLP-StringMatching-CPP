@@ -18,6 +18,7 @@ BetaTrie::BetaTrie(const char* str, size_t m, size_t _l) {
     subPos = new BetaPosition*[arraySize];
 
     for(int i = 0; i < arraySize; ++i) {
+        subPos[i] = NULL;
         BetaPosition* pos = new BetaPosition(i);
 
         for(j = 0; j < i; ++j) {
@@ -35,7 +36,11 @@ BetaTrie::BetaTrie(const char* str, size_t m, size_t _l) {
         }
 
         if(k == l && subPos[j] != NULL) {
-            subPos[j]->nextPos = pos;
+            BetaPosition* lastPos = subPos[j];
+            while(lastPos->nextPos != NULL)
+                lastPos = lastPos->nextPos;
+
+            lastPos->nextPos = pos;
         } else 
             subPos[i] = pos;
     }

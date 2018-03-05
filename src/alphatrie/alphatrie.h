@@ -5,7 +5,7 @@
 #ifndef ALPHATRIE_H
 #define ALPHATRIE_H
 
-#define DEBUG
+// #define DEBUG_TRIE
 
 #include <stdio.h>
 #include <queue>
@@ -23,9 +23,7 @@ class AlphaTrie {
         
         void addSubstring(const char*, int);
         AlphaNode* getRoot() { return root; }
-#ifdef DEBUG
         void print();        
-#endif
 };
 
 #endif

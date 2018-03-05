@@ -8,7 +8,7 @@
 #include <string>
 #include <stdio.h>
 #include "../helpers.h"
-#include "../alphatrie/betatrie.h"
+#include "../betatrie/betatrie.h"
 
 class BetaSkipSearchMatcher {
     private:

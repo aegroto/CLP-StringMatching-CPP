@@ -33,7 +33,7 @@ int helpers::maxPeriod(const char* x, int m) {
 int helpers::log(int a, int base) {
     int result = 1, tmp = a;
 
-    while(tmp >= base) {
+    while(tmp > base) {
         tmp /= base;
         ++result;    
     }

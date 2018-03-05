@@ -7,7 +7,7 @@
 AlphaTrie::AlphaTrie(size_t _l) {
     l = _l;
     root = new AlphaNode();
-#ifdef DEBUG
+#ifdef DEBUG_TRIE
     root->character = 'R';
 #endif
 }
@@ -33,7 +33,7 @@ void AlphaTrie::addSubstring(const char* sub, int start) {
 
     while(foundChars < l) {
         child = new AlphaNode();
-#ifdef DEBUG
+#ifdef DEBUG_TRIE
         child->character = sub[foundChars];
 #endif
         node->set(sub[foundChars], child);
@@ -48,7 +48,7 @@ void AlphaTrie::addSubstring(const char* sub, int start) {
         child->addPos(start);
 }
 
-#ifdef DEBUG
+#ifdef DEBUG_TRIE
 void AlphaTrie::print() {
     std::queue<AlphaNode*> Q;
     

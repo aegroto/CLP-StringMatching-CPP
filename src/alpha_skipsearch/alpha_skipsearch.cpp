@@ -48,7 +48,7 @@ void AlphaSkipSearchMatcher::search() {
     
     j = m - l;
     
-    const int limit = n - l, 
+    const int limit = n - l + 1, 
               shift = m - l + 1;
 
     while(j < limit) {

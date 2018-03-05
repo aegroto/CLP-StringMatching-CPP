@@ -11,7 +11,7 @@
 
 #include "../kmp_skipsearch/kmp_skipsearch.h"
 #include "../alpha_skipsearch/alpha_skipsearch.h"
-#include "../alpha_skipsearch/beta_skipsearch.h"
+#include "../beta_skipsearch/beta_skipsearch.h"
 #include "../mp/mp.h"
 #include "../escape_sequences.h"
 #include "../helpers.h"
@@ -23,7 +23,7 @@ namespace debug {
     void testKMPSSOnMP(StringSet&);
     void testAlphaSSOnMP(StringSet&);
     void testBetaSSOnMP(StringSet&);
-
+    
     void fullCompare(StringSet&);
 }
 
