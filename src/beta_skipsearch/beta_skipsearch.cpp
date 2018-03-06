@@ -15,43 +15,55 @@ BetaSkipSearchMatcher::BetaSkipSearchMatcher(string& sx, string& sy, size_t _sig
 
     occurrences = 0;
 
-    executed = false;
+    preprocessed = searched = false;
 }
 
 BetaSkipSearchMatcher::~BetaSkipSearchMatcher() {
-    if(executed) delete trie;
+    if(preprocessed) delete trie;
 }
 
 void BetaSkipSearchMatcher::preprocessing() {
+    if(preprocessed) return;
     l = helpers::log(m, sigma);
     
     trie = new BetaTrie(x, m, l);
+
+    preprocessed = true;
 }
 
 bool BetaSkipSearchMatcher::attempt(int start) {
-    int c;
-    for(c = 0; c < m; ++c) 
-        if(x[c] != y[start + c])
+    int c = -1;
+    char *ty = (char*) (y + start);
+
+    while(++c < m)
+        if(x[c] != ty[c])
             break;
 
     return c == m;
 }
 
 void BetaSkipSearchMatcher::search() {
-    int i, j, k, start;
+    if(searched) return;
+
+    int i, j, k, start, subIndex;
 
     j = m - l;
     
     const int limit = n - l + 1, 
               shift = m - l + 1;
 
+    char *tx, *ty;
+
     while(j < limit) {
-        int subIndex = -1;
+        subIndex = -1;
 
         //printf("j is %i\n", j);
         for(i = 0; i < shift; ++i) {
             k = 0;
-            while(k < l && x[i + k] == y[j + k]) {
+            tx = (char*) (x + i);
+            ty = (char*) (y + j);
+
+            while(k < l && tx[k] == ty[k]) {
                 ++k;
             }
 
@@ -80,6 +92,8 @@ void BetaSkipSearchMatcher::search() {
 
         j += shift;
     }
+
+    searched = true;
 }
 
 void BetaSkipSearchMatcher::report(int index) {
@@ -87,14 +101,15 @@ void BetaSkipSearchMatcher::report(int index) {
 }
 
 void BetaSkipSearchMatcher::execute() {
-    if(executed) return;
+    if(preprocessed && searched) return;
     preprocessing();
     search();
-    executed = true;
 }
 
 void BetaSkipSearchMatcher::printOutput() {
     printf("\n-- BETA SKIP SEARCH MATCHER --\nx: %s\ny: %s\nm: %zu, n: %zu, l: %zu\n", x, y, m, n, l);
+#ifdef PRINTABLE_TRIE
     trie->print(x, m);
+#endif
     printf("occurrences: %i\n", occurrences);
 }

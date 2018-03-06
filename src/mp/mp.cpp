@@ -19,7 +19,7 @@ MorrisPrattMatcher::MorrisPrattMatcher(string& sx, string& sy) {
 
     occurrences = 0; 
 
-    executed = false;
+    preprocessed = searched = false;
 }
 
 MorrisPrattMatcher::~MorrisPrattMatcher() {
@@ -27,6 +27,8 @@ MorrisPrattMatcher::~MorrisPrattMatcher() {
 }
 
 void MorrisPrattMatcher::preprocessing() {
+    if(preprocessed) return;
+
     int i, j;
     i = 0;
     j = mpNext[0] = -1;
@@ -36,12 +38,16 @@ void MorrisPrattMatcher::preprocessing() {
             j = mpNext[j];
         mpNext[++i] = ++j;
     }
+
+    preprocessed = true;
 }
 
 void MorrisPrattMatcher::search() {
-   int i, j;
+    if(searched) return;
 
-   i = j = occurrences = 0;
+    int i, j;
+
+    i = j = occurrences = 0;
 
     while (j < n) {
         while (i >= 0 && x[i] != y[j])
@@ -54,6 +60,8 @@ void MorrisPrattMatcher::search() {
             i = mpNext[i];
         }
     }
+
+    searched = true;
 }
 
 void MorrisPrattMatcher::report(int index) {
@@ -61,10 +69,9 @@ void MorrisPrattMatcher::report(int index) {
 }
 
 void MorrisPrattMatcher::execute() {
-    if(executed) return;
+    if(preprocessed && searched) return;
     preprocessing();
     search();
-    executed = true;
 }
 
 void MorrisPrattMatcher::printOutput() {

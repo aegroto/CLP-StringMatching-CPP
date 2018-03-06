@@ -7,6 +7,7 @@
 
 #include <string>
 #include <stdio.h>
+#include <cstring>
 #include "../helpers.h"
 #include "../alphatrie/alphatrie.h"
 
@@ -18,18 +19,19 @@ class AlphaSkipSearchMatcher {
         size_t m, n, sigma;
         int l, occurrences;
 
-        bool executed;
+        bool preprocessed, searched;
 
         AlphaTrie *trie;
 
-        void preprocessing();
         bool attempt(int);
-        void search();
 
         void report(int);
     public:
         AlphaSkipSearchMatcher(string&, string&, size_t);
         ~AlphaSkipSearchMatcher();
+        
+        void preprocessing();
+        void search();
         
         void execute();
         void printOutput();

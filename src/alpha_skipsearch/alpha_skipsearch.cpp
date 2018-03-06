@@ -17,7 +17,7 @@ AlphaSkipSearchMatcher::AlphaSkipSearchMatcher(string& sx, string& sy, size_t _s
 
     occurrences = 0;
 
-    executed = false;
+    preprocessed = searched = false;
 }
 
 AlphaSkipSearchMatcher::~AlphaSkipSearchMatcher() {
@@ -25,24 +25,33 @@ AlphaSkipSearchMatcher::~AlphaSkipSearchMatcher() {
 }
 
 void AlphaSkipSearchMatcher::preprocessing() {
+    if(preprocessed) return;
+    
     l = helpers::log(m, sigma);
 
+    const int limit =  m - l + 1;
     trie = new AlphaTrie(l);  
-    for(int i = 0; i < m - l + 1; ++i) {
+    for(int i = limit; i >= 0; --i) {
         trie->addSubstring(&x[i], i);
     }
+
+    preprocessed = true;
 }
 
 bool AlphaSkipSearchMatcher::attempt(int start) {
-    int c;
-    for(c = 0; c < m; ++c) 
-        if(x[c] != y[start + c])
+    int c = -1;
+    char *ty = (char*) (y + start);
+
+    while(++c < m)
+        if(x[c] != ty[c])
             break;
 
     return c == m;
 }
 
 void AlphaSkipSearchMatcher::search() {
+    if(searched) return;
+
     int j, k, start;
     AlphaNode* node;
     
@@ -51,11 +60,13 @@ void AlphaSkipSearchMatcher::search() {
     const int limit = n - l + 1, 
               shift = m - l + 1;
 
+    char* ty;
     while(j < limit) {
         node = trie->getRoot();
+        ty = (char*) (y + j);
 
         for(k = 0; k < l && node != NULL; ++k) {
-            node = node->get(y[j+k]);
+            node = node->get(ty[k]);
         }
 
         if(node != NULL) {
@@ -74,6 +85,8 @@ void AlphaSkipSearchMatcher::search() {
 
         j += shift;
     }
+
+    searched = true;
 }
 
 void AlphaSkipSearchMatcher::report(int index) {
@@ -81,10 +94,9 @@ void AlphaSkipSearchMatcher::report(int index) {
 }
 
 void AlphaSkipSearchMatcher::execute() {
-    if(executed) return;
+    if(preprocessed && searched) return;
     preprocessing();
     search();
-    executed = true;
 }
 
 void AlphaSkipSearchMatcher::printOutput() {

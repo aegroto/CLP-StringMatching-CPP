@@ -1,8 +1,6 @@
 #ifndef BETATRIE_H
 #define BETATRIE_H
 
-#define DEBUG
-
 #include <vector>
 #include <string>
 #include <stdio.h>
@@ -31,9 +29,7 @@ class BetaTrie {
         size_t getArraySize() { return arraySize; }
         BetaPosition* getSubPos(int i) { return subPos[i]; }
         
-#ifdef DEBUG
-        void print(const char*, size_t);  
-#endif      
+        void print(const char*, size_t);
 };
 
 #endif

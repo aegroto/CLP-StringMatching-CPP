@@ -24,7 +24,9 @@ namespace debug {
     void testAlphaSSOnMP(StringSet&);
     void testBetaSSOnMP(StringSet&);
     
+    void preprocessingCompare(StringSet&);
     void fullCompare(StringSet&);
+    void separatedFullCompare(StringSet&);
 }
 
 #endif

@@ -21,22 +21,23 @@ class KMPSkipSearchMatcher {
         
         const char *x, *y;
 
-        bool executed;
+        bool preprocessed, searched;
         
-        void preprocessing();
         void mpPreprocessing();
         void kmpPreprocessing();
 
         int attempt(int&, int&);
         void advanceSkip(int&, int&);
-        void search();
         
         void report(int);
 
     public:
         KMPSkipSearchMatcher(string&, string&);
         ~KMPSkipSearchMatcher();
-
+        
+        void preprocessing();
+        void search();
+        
         void execute();
         void printOutput();
 

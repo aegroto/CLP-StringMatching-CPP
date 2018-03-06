@@ -5,6 +5,8 @@
 #ifndef BETA_SKIPSEARCH_H
 #define BETA_SKIPSEARCH_H
 
+#define PRINTABLE_TRIE
+
 #include <string>
 #include <stdio.h>
 #include "../helpers.h"
@@ -16,18 +18,19 @@ class BetaSkipSearchMatcher {
         size_t m, n, l, sigma;
         int occurrences;
 
-        bool executed;
+        bool preprocessed, searched;
 
         BetaTrie *trie;
 
-        void preprocessing();
         bool attempt(int);
-        void search();
 
         void report(int);
     public:
         BetaSkipSearchMatcher(string&, string&, size_t);
         ~BetaSkipSearchMatcher();
+        
+        void preprocessing();
+        void search();
         
         void execute();
         void printOutput();

@@ -12,14 +12,15 @@ BetaTrie::BetaPosition::~BetaPosition() {
 BetaTrie::BetaTrie(const char* str, size_t m, size_t _l) {
     l = _l;
 
-    int k, j;
+    int i, k, j;
+    BetaPosition *pos, *lastPos;
 
     arraySize = m - l + 1;
     subPos = new BetaPosition*[arraySize];
 
-    for(int i = 0; i < arraySize; ++i) {
+    for(i = 0; i < arraySize; ++i) {
         subPos[i] = NULL;
-        BetaPosition* pos = new BetaPosition(i);
+        pos = new BetaPosition(i);
 
         for(j = 0; j < i; ++j) {
             k = 0;
@@ -35,8 +36,8 @@ BetaTrie::BetaTrie(const char* str, size_t m, size_t _l) {
             }
         }
 
-        if(k == l && subPos[j] != NULL) {
-            BetaPosition* lastPos = subPos[j];
+        if(k == l) {
+            lastPos = subPos[j];
             while(lastPos->nextPos != NULL)
                 lastPos = lastPos->nextPos;
 
@@ -52,8 +53,6 @@ BetaTrie::~BetaTrie() {
 
     delete[] subPos;
 }
-
-#ifdef DEBUG
 
 void BetaTrie::print(const char* str, size_t m) {
     for(size_t i = 0; i < arraySize; ++i) {
@@ -72,4 +71,3 @@ void BetaTrie::print(const char* str, size_t m) {
         }
     }
 }
-#endif

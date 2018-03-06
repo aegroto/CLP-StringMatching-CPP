@@ -15,16 +15,17 @@ class MorrisPrattMatcher {
         int m, n, occurrences;
         int *mpNext;
 
-        bool executed;
-
-        void preprocessing();
-        void search();
+        bool preprocessed, searched;
+        
         void report(int);
 
     public:
         MorrisPrattMatcher(string&, string&);
         ~MorrisPrattMatcher();
-        
+
+        void preprocessing();      
+        void search();
+          
         void execute();
         void printOutput();
         int getOccurrences() { return occurrences; }

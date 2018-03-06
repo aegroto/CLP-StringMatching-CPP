@@ -21,7 +21,7 @@ KMPSkipSearchMatcher::KMPSkipSearchMatcher(string& sx, string& sy) {
 
     occurrences = 0;
 
-    executed = false;
+    preprocessed = searched = false;
 }
 
 KMPSkipSearchMatcher::~KMPSkipSearchMatcher() {
@@ -32,6 +32,10 @@ KMPSkipSearchMatcher::~KMPSkipSearchMatcher() {
 }
         
 void KMPSkipSearchMatcher::preprocessing() {
+    if(preprocessed) return;
+    mpPreprocessing();
+    kmpPreprocessing();
+    
     for(int s = 0; s < 255; ++s)
         z[s] = -1;
     
@@ -41,6 +45,8 @@ void KMPSkipSearchMatcher::preprocessing() {
         list[i] = z[x[i]];
         z[x[i]] = i;
     }
+
+    preprocessed = true;
 }
 
 void KMPSkipSearchMatcher::mpPreprocessing() {
@@ -90,6 +96,8 @@ void KMPSkipSearchMatcher::advanceSkip(int &i, int &j) {
 }
 
 void KMPSkipSearchMatcher::search() {
+    if(searched) return;
+
     int wall, start, i, j, k, kmpStart, period, lastPIndex;
 
     occurrences = wall = 0;
@@ -133,6 +141,8 @@ void KMPSkipSearchMatcher::search() {
             }
         }   
     }
+
+    searched = true;
 }
 
 void KMPSkipSearchMatcher::report(int index) {
@@ -140,12 +150,9 @@ void KMPSkipSearchMatcher::report(int index) {
 }
 
 void KMPSkipSearchMatcher::execute() {
-    if(executed) return;
-    mpPreprocessing();
-    kmpPreprocessing();
+    if(preprocessed && searched) return;
     preprocessing();
     search();
-    executed = true;
 }
 
 void KMPSkipSearchMatcher::printOutput() {
