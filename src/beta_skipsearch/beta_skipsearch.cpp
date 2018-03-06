@@ -57,7 +57,6 @@ void BetaSkipSearchMatcher::search() {
     while(j < limit) {
         subIndex = -1;
 
-        //printf("j is %i\n", j);
         for(i = 0; i < shift; ++i) {
             k = 0;
             tx = (char*) (x + i);
@@ -73,7 +72,6 @@ void BetaSkipSearchMatcher::search() {
             }
         }
 
-        //printf("\nsubindex is %i\n", subIndex);
 
         if(subIndex >= 0) {
             BetaTrie::BetaPosition* position = trie->getSubPos(subIndex);
@@ -81,7 +79,6 @@ void BetaSkipSearchMatcher::search() {
             while(position != NULL) {
                 start = j - position->pos;
 
-                //printf("attempt at %i\n", start);
                 if(attempt(start)) {
                     report(start);
                 }

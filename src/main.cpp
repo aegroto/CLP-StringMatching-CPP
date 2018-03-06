@@ -21,10 +21,10 @@ int main() {
     srand(time(0));
 
     printf("Generating string set...\n");
-    StringSet stringSet(64,
-                        64,
-                        50000,
-                        50000,
+    StringSet stringSet(640,
+                        640,
+                        500000,
+                        500000,
                         'a', 'b',
                         1000);
 
@@ -35,7 +35,7 @@ int main() {
     debug::testAlphaSSOnMP(stringSet);
     printf("\n");*/
 
-    debug::fullCompare(stringSet);
+    // debug::fullCompare(stringSet);
 
     debug::separatedFullCompare(stringSet);
 
