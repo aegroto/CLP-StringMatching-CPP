@@ -31,11 +31,7 @@ void AlphaSkipSearchMatcher::preprocessing() {
     
     l = helpers::log(m, sigma);
 
-    const int limit =  m - l + 1;
-    trie = new AlphaTrie(l);  
-    for(int i = limit; i >= 0; --i) {
-        trie->addSubstring(&x[i], i);
-    }
+    trie = new AlphaTrie(x, m, l);
 
     preprocessed = true;
 }

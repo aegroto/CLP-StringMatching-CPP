@@ -28,15 +28,15 @@ int main() {
                         4000,
                         5000,
                         'a', 'c',
-                        1000);
+                        10000);
 
     /*debug::testSSOnMP(stringSet);
     printf("\n");*/
     /*debug::testKMPSSOnMP(stringSet);
     printf("\n");
     debug::testBetaSSOnMP(stringSet);
-    printf("\n");
-    debug::testAlphaSSOnMP(stringSet);
+    printf("\n");*/
+    /*debug::testAlphaSSOnMP(stringSet);
     printf("\n");*/
 
     // debug::fullCompare(stringSet);

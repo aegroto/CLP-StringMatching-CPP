@@ -6,12 +6,49 @@
 
 #include "alphatrie.h"
 
-AlphaTrie::AlphaTrie(size_t _l) {
+AlphaTrie::AlphaTrie(const char* str, size_t m, size_t _l) {
     l = _l;
     root = new AlphaNode();
+    #ifdef DEBUG_TRIE
+        root->character = 'R';
+    #endif
+
+    AlphaNode *node, *child;
+    size_t foundChars;
+    const size_t limit = m - l + 1;
+    char* sub;
+
+    for(size_t k = 0; k < limit; ++k) {
+        node = root;
+        child = NULL;
+        foundChars = 0;
+        sub = (char*) (str + k);
+
+        child = node->get(sub[foundChars]);
+
+        while(foundChars < l && child != NULL) {
+            ++foundChars;
+            
+            node = child;        
+            child = node->get(sub[foundChars]);        
+        }
+
+        while(foundChars < l) {
+            child = new AlphaNode();
 #ifdef DEBUG_TRIE
-    root->character = 'R';
+            child->character = sub[foundChars];
 #endif
+            node->set(sub[foundChars], child);
+            node = child;
+
+            ++foundChars;
+        }
+
+        if(child == NULL)
+            node->addPos(k);
+        else
+            child->addPos(k);
+    }
 }
 
 AlphaTrie::~AlphaTrie() {
