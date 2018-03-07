@@ -21,13 +21,15 @@ int main() {
     srand(time(0));
 
     printf("Generating string set...\n");
-    StringSet stringSet(640,
-                        640,
-                        500000,
-                        500000,
-                        'a', 'b',
+    StringSet stringSet(30,
+                        50,
+                        4000,
+                        5000,
+                        'a', 'c',
                         1000);
 
+    /*debug::testSSOnMP(stringSet);
+    printf("\n");*/
     /*debug::testKMPSSOnMP(stringSet);
     printf("\n");
     debug::testBetaSSOnMP(stringSet);

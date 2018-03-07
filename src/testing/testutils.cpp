@@ -6,6 +6,43 @@
 
 using namespace std;
 
+void debug::testSSOnMP(StringSet &stringSet) {
+    MorrisPrattMatcher *mpm = NULL;
+    SkipSearchMatcher *ssm = NULL;
+
+    size_t t = 0;
+
+    printf(ES_BRIGHTCYAN "-- TEST UTILS : SKIP SEARCH\n-- Launching %zu tests with patterns and texts of lengths m = (%zu, %zu) and n = (%zu, %zu), alphabet is [%c, %c]\n",
+            stringSet.dim, stringSet.minM, stringSet.maxM, stringSet.minN, stringSet.maxN, stringSet.minChar, stringSet.maxChar);
+    printf("-- Testing against MORRIS-PRATT\n" ES_RESET);
+
+    for(t = 0; t < stringSet.dim; ++t) {
+        mpm = new MorrisPrattMatcher(stringSet.getPattern(t), stringSet.getText(t));
+        mpm->execute();
+        
+        ssm = new SkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t));
+        ssm->execute();
+
+        if(mpm->getOccurrences() != ssm->getOccurrences()) {
+            printf(ES_RED "COMPARING FAILED!\n" ES_RESET);
+            mpm->printOutput();
+            ssm->printOutput();
+            printf("\n");
+            break;
+        }
+
+        delete mpm;
+        delete ssm;
+    }
+
+    if(t < stringSet.dim)
+        printf(ES_RED "[FAIL] ");
+    else
+        printf(ES_GREEN "[SUCCESS] ");
+
+    printf("KMPss VS MP : %zu correct tests on %zu\n" ES_RESET, t, stringSet.dim);
+}
+
 void debug::testKMPSSOnMP(StringSet &stringSet) {
     MorrisPrattMatcher *mpm = NULL;
     KMPSkipSearchMatcher *kmpssm = NULL;
@@ -117,65 +154,8 @@ void debug::testBetaSSOnMP(StringSet &stringSet) {
     printf("Beta Skip search VS MP : %zu correct tests on %zu\n" ES_RESET, t, stringSet.dim);
 }
 
-void debug::preprocessingCompare(StringSet& stringSet) {
-    clock_t currentTime = 0, mpmTime = 0, kmpssTime = 0, alphassTime = 0, betassTime = 0;  
-    size_t t = 0;
-
-    printf(ES_BRIGHTCYAN "-- TEST UTILS : PREPROCESSING COMPARE\n");
-    printf("-- Launching a performance test on all preprocessings of algorithms implemented in this application.\n");
-    printf("-- String set has " ES_BRIGHTMAGENTA "%zu" ES_BRIGHTCYAN " strings, ", stringSet.dim);
-    printf("with patterns and texts of lengths " ES_BRIGHTMAGENTA "m = (%zu, %zu) " ES_CYAN, stringSet.minM, stringSet.maxM);
-    printf("and " ES_BRIGHTMAGENTA "n = (%zu, %zu)" ES_CYAN ", alphabet is" ES_BRIGHTMAGENTA " [%c, %c]" ES_CYAN ".\n\n",
-            stringSet.minN, stringSet.maxN, stringSet.minChar, stringSet.maxChar);
-
-    printf("-- Measuring preprocessing performances of MORRIS-PRATT\n");
-    MorrisPrattMatcher *mpm = NULL;
-    currentTime = clock();
-    for(t = 0; t < stringSet.dim; ++t) {
-        mpm = new MorrisPrattMatcher(stringSet.getPattern(t), stringSet.getText(t));
-        mpm->preprocessing();
-        delete mpm;
-    }
-    mpmTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "Morris-Pratt " ES_BRIGHTCYAN "carried out the challenge in " ES_BRIGHTMAGENTA "%fs\n\n" ES_BRIGHTCYAN, double(mpmTime) / CLOCKS_PER_SEC);
-    
-    printf("-- Measuring preprocessing performances of KMP SKIP SEARCH\n");
-    KMPSkipSearchMatcher *kmpssm = NULL;
-    currentTime = clock();
-    for(t = 0; t < stringSet.dim; ++t) {
-        kmpssm = new KMPSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t));
-        kmpssm->preprocessing();
-        delete kmpssm;
-    }
-    kmpssTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "KMP Skip Search " ES_BRIGHTCYAN "carried out the challenge in " ES_BRIGHTMAGENTA "%fs\n\n" ES_BRIGHTCYAN, double(kmpssTime) / CLOCKS_PER_SEC);
-
-    printf("-- Measuring preprocessing performances of ALPHA SKIP SEARCH\n");
-    AlphaSkipSearchMatcher *alphassm = NULL;
-    currentTime = clock();
-    for(t = 0; t < stringSet.dim; ++t) {
-        alphassm = new AlphaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.alphabetSize);
-        alphassm->preprocessing();
-        delete alphassm;
-    }
-    alphassTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "Alpha Skip Search " ES_BRIGHTCYAN "carried out the challenge in " ES_BRIGHTMAGENTA "%fs\n\n" ES_BRIGHTCYAN, double(alphassTime) / CLOCKS_PER_SEC);
-
-    printf("-- Measuring preprocessing performances of BETA SKIP SEARCH\n");
-    BetaSkipSearchMatcher *betassm = NULL;
-    currentTime = clock();
-    for(t = 0; t < stringSet.dim; ++t) {
-        betassm = new BetaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.alphabetSize);
-        betassm->preprocessing();
-        delete betassm;
-    }
-    betassTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "Beta Skip Search " ES_BRIGHTCYAN "carried out the challenge in " ES_BRIGHTMAGENTA "%fs\n\n" ES_BRIGHTCYAN, double(betassTime) / CLOCKS_PER_SEC);
-}
-
-
 void debug::fullCompare(StringSet& stringSet) {
-    clock_t currentTime = 0, mpmTime = 0, kmpssTime = 0, alphassTime = 0, betassTime = 0;  
+    clock_t currentTime = 0, mpTime = 0, ssTime = 0, kmpssTime = 0, alphassTime = 0, betassTime = 0;  
     size_t t = 0;
 
     printf(ES_BRIGHTCYAN "-- TEST UTILS : FULL COMPARE\n");
@@ -185,7 +165,7 @@ void debug::fullCompare(StringSet& stringSet) {
     printf("and " ES_BRIGHTMAGENTA "n = (%zu, %zu)" ES_CYAN ", alphabet is" ES_BRIGHTMAGENTA " [%c, %c]" ES_CYAN ".\n\n",
             stringSet.minN, stringSet.maxN, stringSet.minChar, stringSet.maxChar);
 
-    // printf("-- Measuring performances of MORRIS-PRATT\n");
+    
     MorrisPrattMatcher *mpm = NULL;
     currentTime = clock();
     for(t = 0; t < stringSet.dim; ++t) {
@@ -193,10 +173,19 @@ void debug::fullCompare(StringSet& stringSet) {
         mpm->execute();
         delete mpm;
     }
-    mpmTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "Morris-Pratt " ES_BRIGHTCYAN "carried out the challenge in...\t\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(mpmTime) / CLOCKS_PER_SEC);
+    mpTime = clock() - currentTime;
+    printf("-- " ES_BRIGHTMAGENTA "Morris-Pratt " ES_BRIGHTCYAN "carried out the challenge in...\t\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(mpTime) / CLOCKS_PER_SEC);
     
-    // printf("-- Measuring performances of KMP SKIP SEARCH\n");
+    SkipSearchMatcher *ssm = NULL;
+    currentTime = clock();
+    for(t = 0; t < stringSet.dim; ++t) {
+        ssm = new SkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t));
+        ssm->execute();
+        delete ssm;
+    }
+    ssTime = clock() - currentTime;
+    printf("-- " ES_BRIGHTMAGENTA "Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(ssTime) / CLOCKS_PER_SEC);
+    
     KMPSkipSearchMatcher *kmpssm = NULL;
     currentTime = clock();
     for(t = 0; t < stringSet.dim; ++t) {
@@ -207,7 +196,7 @@ void debug::fullCompare(StringSet& stringSet) {
     kmpssTime = clock() - currentTime;
     printf("-- " ES_BRIGHTMAGENTA "KMP Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(kmpssTime) / CLOCKS_PER_SEC);
     
-    // printf("-- Measuring performances of ALPHA SKIP SEARCH\n");
+    
     AlphaSkipSearchMatcher *alphassm = NULL;
     currentTime = clock();
 
@@ -219,7 +208,6 @@ void debug::fullCompare(StringSet& stringSet) {
     alphassTime = clock() - currentTime;
     printf("-- " ES_BRIGHTMAGENTA "Alpha Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(alphassTime) / CLOCKS_PER_SEC);
 
-    // printf("-- Measuring performances of BETA SKIP SEARCH\n");
     BetaSkipSearchMatcher *betassm = NULL;
     currentTime = clock();
     for(t = 0; t < stringSet.dim; ++t) {
@@ -234,9 +222,9 @@ void debug::fullCompare(StringSet& stringSet) {
 
 void debug::separatedFullCompare(StringSet& stringSet) {
     clock_t currentTime = 0, 
-            mpCDTime = 0, kmpssCDTime = 0, alphassCDTime = 0, betassCDTime = 0,
-            mpPTime = 0, kmpssPTime = 0, alphassPTime = 0, betassPTime = 0,
-            mpSTime = 0, kmpssSTime = 0, alphassSTime = 0, betassSTime = 0;
+            mpCDTime = 0, ssCDTime = 0, kmpssCDTime = 0, alphassCDTime = 0, betassCDTime = 0,
+            mpPTime = 0, ssPTime = 0, kmpssPTime = 0, alphassPTime = 0, betassPTime = 0,
+            mpSTime = 0, ssSTime = 0, kmpssSTime = 0, alphassSTime = 0, betassSTime = 0;
 
     double cdTimeSec = 0, pTimeSec = 0, sTimeSec = 0;  
 
@@ -272,6 +260,34 @@ void debug::separatedFullCompare(StringSet& stringSet) {
     sTimeSec = double(mpSTime) / CLOCKS_PER_SEC;
 
     printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Morris-Pratt " ES_BRIGHTCYAN "carried out the challenge in...\t\t");
+    printf("CD: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cdTimeSec);
+    printf("P: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", pTimeSec);
+    printf("S: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", sTimeSec);
+    printf("T: " ES_BRIGHTMAGENTA "%fs\n", cdTimeSec + pTimeSec + sTimeSec);
+
+    SkipSearchMatcher *ssm = NULL;
+    for(t = 0; t < stringSet.dim; ++t) {
+        currentTime = clock();
+        ssm = new SkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t));
+        ssCDTime += clock() - currentTime;
+
+        currentTime = clock();
+        ssm->preprocessing();
+        ssPTime += clock() - currentTime;
+
+        currentTime = clock();
+        ssm->search();
+        ssSTime += clock() - currentTime;
+
+        currentTime = clock();
+        delete ssm;
+        ssCDTime += clock() - currentTime;
+    }
+    cdTimeSec = double(ssCDTime) / CLOCKS_PER_SEC;
+    pTimeSec = double(ssPTime) / CLOCKS_PER_SEC;
+    sTimeSec = double(ssSTime) / CLOCKS_PER_SEC;
+
+    printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t\t");
     printf("CD: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cdTimeSec);
     printf("P: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", pTimeSec);
     printf("S: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", sTimeSec);
