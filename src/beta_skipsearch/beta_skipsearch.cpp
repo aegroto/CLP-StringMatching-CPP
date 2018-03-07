@@ -1,5 +1,7 @@
 /**
  * "BetaSkipSearchMatcher" class definition file
+ *
+ * Lorenzo Catania
 **/
 
 #include "beta_skipsearch.h"

@@ -1,5 +1,7 @@
 /**
  * "helpers" namespace header file
+ *
+ * Lorenzo Catania
 **/
 
 #ifndef HELPERS_H

@@ -1,5 +1,7 @@
 /**
  * "AlphaTrie" class header file
+ *
+ * Lorenzo Catania
 **/
 
 #ifndef ALPHATRIE_H

@@ -1,3 +1,9 @@
+/**
+ * "BetaTrie" class header file
+ *
+ * Lorenzo Catania
+**/
+
 #ifndef BETATRIE_H
 #define BETATRIE_H
 

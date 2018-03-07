@@ -1,5 +1,7 @@
 /**
  * "KMPSkipSearchMatcher" class definition file
+ *
+ * Lorenzo Catania
 **/
 
 #include "kmp_skipsearch.h"

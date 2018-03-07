@@ -2,6 +2,8 @@
  * Skip Search - A very fast string matching algorithm for small alphabets and long patterns
  * Original Algorithm by C. Charras, T. Lecroq, J. D. Pehoushek.
  * C++ implementation by Lorenzo Catania and Valentino Merlino
+ *
+ * Lorenzo Catania
 **/
 
 #include <stdio.h>

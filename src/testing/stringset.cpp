@@ -1,5 +1,7 @@
 /**
  * "StringSet" class definition file
+ *
+ * Lorenzo Catania
 **/
 
 #include "stringset.h"

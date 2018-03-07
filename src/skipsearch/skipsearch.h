@@ -1,3 +1,9 @@
+/**
+ * "SkipSearchMatcher" class header file
+ *
+ * Valentino Merlino
+**/
+
 #ifndef SKIPSEARCHMATCHER_H_
 #define SKIPSEARCHMATCHER_H_
 
@@ -20,7 +26,7 @@ public:
 	
 	void preprocessing();
 	void search();
-	
+
 	void execute();
 	int getOccurrences() {return occurrences;}
 	void printOutput();

@@ -1,3 +1,9 @@
+/**
+ * "BetaTrie" class header file
+ *
+ * Lorenzo Catania
+**/
+
 #include "betatrie.h"
 
 BetaTrie::BetaPosition::BetaPosition(int _pos) : pos(_pos) {

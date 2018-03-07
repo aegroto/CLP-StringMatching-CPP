@@ -1,5 +1,7 @@
 /**
  * "AlphaSkipSearchMatcher" class header file
+ *
+ * Lorenzo Catania
 **/
 
 #ifndef ALPHA_SKIPSEARCH_H

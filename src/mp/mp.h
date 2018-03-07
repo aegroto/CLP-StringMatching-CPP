@@ -1,5 +1,7 @@
 /**
  * "MorrisPrattMatcher" class header file
+ *
+ * Lorenzo Catania
 **/
 
 #ifndef MP_H

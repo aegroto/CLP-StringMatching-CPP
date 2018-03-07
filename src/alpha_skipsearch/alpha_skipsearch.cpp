@@ -1,5 +1,7 @@
 /**
  * "AlphaSkipSearchMathcer" class definition file
+ *
+ * Lorenzo Catania
 **/
 
 #include "alpha_skipsearch.h"

@@ -1,5 +1,7 @@
 /**
  * "helpers" namespace definition file
+ *
+ * Lorenzo Catania
 **/
 
 #include "helpers.h"

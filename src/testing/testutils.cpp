@@ -1,5 +1,7 @@
 /**
  * "TestUtils" namespace definition file
+ *
+ * Lorenzo Catania
 **/
 
 #include "testutils.h"

@@ -1,5 +1,7 @@
 /**
  * "BetaSkipSearchMatcher" class header file
+ *
+ * Lorenzo Catania
 **/
 
 #ifndef BETA_SKIPSEARCH_H

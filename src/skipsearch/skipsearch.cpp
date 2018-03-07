@@ -1,3 +1,9 @@
+/**
+ * "SkipSearchMatcher" class definition file
+ *
+ * Valentino Merlino
+**/
+
 #include "skipsearch.h"
 
 using namespace std;

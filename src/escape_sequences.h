@@ -1,5 +1,7 @@
 /**
  * Escape sequences for terminal output formatting
+ *
+ * Lorenzo Catania
 **/
 
 #ifndef ESCAPE_SEQUENCES_H

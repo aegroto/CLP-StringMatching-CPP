@@ -1,5 +1,7 @@
 /**
  * "MorrisPrattMatcher" class definition file
+ *
+ * Lorenzo Catania
 **/
 
 #include <string>

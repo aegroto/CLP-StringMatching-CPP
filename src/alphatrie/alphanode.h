@@ -1,5 +1,7 @@
 /**
  * "AlphaNode" class header file
+ *
+ * Lorenzo Catania
 **/
 
 #ifndef ALPHANODE_H

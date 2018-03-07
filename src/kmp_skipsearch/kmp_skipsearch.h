@@ -1,5 +1,7 @@
 /**
  * "KMPSkipSearchMatcher" class header file
+ *
+ * Lorenzo Catania
 **/
 
 #ifndef KMP_SKIPSEARCH_H

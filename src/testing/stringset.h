@@ -1,5 +1,7 @@
 /**
  * "StringSet" class header file
+ *
+ * Lorenzo Catania
 **/
 
 #ifndef STRINGSET_H

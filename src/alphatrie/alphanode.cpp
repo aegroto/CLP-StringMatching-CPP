@@ -1,5 +1,7 @@
 /**
  * "AlphaNode" class definition file
+ *
+ * Lorenzo Catania
 **/
 
 #include "alphanode.h"

@@ -1,5 +1,7 @@
 /**
  * "AlphaTrie" class definition file
+ *
+ * Lorenzo Catania
 **/
 
 #include "alphatrie.h"
