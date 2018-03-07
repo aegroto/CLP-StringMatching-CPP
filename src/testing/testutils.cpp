@@ -224,13 +224,11 @@ void debug::fullCompare(StringSet& stringSet) {
 
 void debug::separatedFullCompare(StringSet& stringSet) {
     clock_t currentTime = 0, 
-            mpCDTime = 0, ssCDTime = 0, kmpssCDTime = 0, alphassCDTime = 0, betassCDTime = 0,
-            mpPTime = 0, ssPTime = 0, kmpssPTime = 0, alphassPTime = 0, betassPTime = 0,
-            mpSTime = 0, ssSTime = 0, kmpssSTime = 0, alphassSTime = 0, betassSTime = 0;
+            cTime, pTime, sTime, dTime;
 
-    double cdTimeSec = 0, pTimeSec = 0, sTimeSec = 0;  
+    double cTimeSec, pTimeSec, sTimeSec, dTimeSec;  
 
-    size_t t = 0;
+    size_t t;
 
     printf(ES_BRIGHTCYAN "-- TEST UTILS : SEPARATED FULL COMPARE\n");
     printf("-- Launching a performance test on all algorithms implemented in this application, separating construction/destruction, preprocessing and searching.\n");
@@ -240,142 +238,157 @@ void debug::separatedFullCompare(StringSet& stringSet) {
             stringSet.minN, stringSet.maxN, stringSet.minChar, stringSet.maxChar);
 
     MorrisPrattMatcher *mpm = NULL;
+    cTime = pTime = sTime = dTime = 0;
     for(t = 0; t < stringSet.dim; ++t) {
         currentTime = clock();
         mpm = new MorrisPrattMatcher(stringSet.getPattern(t), stringSet.getText(t));
-        mpCDTime += clock() - currentTime;
+        cTime += clock() - currentTime;
 
         currentTime = clock();
         mpm->preprocessing();
-        mpPTime += clock() - currentTime;
+        pTime += clock() - currentTime;
 
         currentTime = clock();
         mpm->search();
-        mpSTime += clock() - currentTime;
+        sTime += clock() - currentTime;
 
         currentTime = clock();
         delete mpm;
-        mpCDTime += clock() - currentTime;
+        dTime += clock() - currentTime;
     }
-    cdTimeSec = double(mpCDTime) / CLOCKS_PER_SEC;
-    pTimeSec = double(mpPTime) / CLOCKS_PER_SEC;
-    sTimeSec = double(mpSTime) / CLOCKS_PER_SEC;
+    cTimeSec = double(cTime) / CLOCKS_PER_SEC;
+    pTimeSec = double(pTime) / CLOCKS_PER_SEC;
+    sTimeSec = double(sTime) / CLOCKS_PER_SEC;
+    dTimeSec = double(dTime) / CLOCKS_PER_SEC;
 
     printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Morris-Pratt " ES_BRIGHTCYAN "carried out the challenge in...\t\t");
-    printf("CD: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cdTimeSec);
+    printf("C: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cTimeSec);
     printf("P: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", pTimeSec);
     printf("S: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", sTimeSec);
-    printf("T: " ES_BRIGHTMAGENTA "%fs\n", cdTimeSec + pTimeSec + sTimeSec);
+    printf("D: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", dTimeSec);
+    printf("T: " ES_BRIGHTMAGENTA "%fs\n" ES_RESET, cTimeSec + pTimeSec + sTimeSec + dTimeSec);
 
     SkipSearchMatcher *ssm = NULL;
+    cTime = pTime = sTime = dTime = 0;
     for(t = 0; t < stringSet.dim; ++t) {
         currentTime = clock();
         ssm = new SkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t));
-        ssCDTime += clock() - currentTime;
+        cTime += clock() - currentTime;
 
         currentTime = clock();
         ssm->preprocessing();
-        ssPTime += clock() - currentTime;
+        pTime += clock() - currentTime;
 
         currentTime = clock();
         ssm->search();
-        ssSTime += clock() - currentTime;
+        sTime += clock() - currentTime;
 
         currentTime = clock();
         delete ssm;
-        ssCDTime += clock() - currentTime;
+        dTime += clock() - currentTime;
     }
-    cdTimeSec = double(ssCDTime) / CLOCKS_PER_SEC;
-    pTimeSec = double(ssPTime) / CLOCKS_PER_SEC;
-    sTimeSec = double(ssSTime) / CLOCKS_PER_SEC;
+    cTimeSec = double(cTime) / CLOCKS_PER_SEC;
+    pTimeSec = double(pTime) / CLOCKS_PER_SEC;
+    sTimeSec = double(sTime) / CLOCKS_PER_SEC;
+    dTimeSec = double(dTime) / CLOCKS_PER_SEC;
 
     printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t\t");
-    printf("CD: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cdTimeSec);
+    printf("C: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cTimeSec);
     printf("P: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", pTimeSec);
     printf("S: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", sTimeSec);
-    printf("T: " ES_BRIGHTMAGENTA "%fs\n", cdTimeSec + pTimeSec + sTimeSec);
+    printf("D: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", dTimeSec);
+    printf("T: " ES_BRIGHTMAGENTA "%fs\n" ES_RESET, cTimeSec + pTimeSec + sTimeSec + dTimeSec);
 
     KMPSkipSearchMatcher *kmpssm = NULL;
+    cTime = pTime = sTime = dTime = 0;
     for(t = 0; t < stringSet.dim; ++t) {
         currentTime = clock();
         kmpssm = new KMPSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t));
-        kmpssCDTime += clock() - currentTime;
+        cTime += clock() - currentTime;
 
         currentTime = clock();
         kmpssm->preprocessing();
-        kmpssPTime += clock() - currentTime;
+        pTime += clock() - currentTime;
 
         currentTime = clock();
         kmpssm->search();
-        kmpssSTime += clock() - currentTime;
+        sTime += clock() - currentTime;
 
         currentTime = clock();
         delete kmpssm;
-        kmpssCDTime += clock() - currentTime;
+        dTime += clock() - currentTime;
     }
-    cdTimeSec = double(kmpssCDTime) / CLOCKS_PER_SEC;
-    pTimeSec = double(kmpssPTime) / CLOCKS_PER_SEC;
-    sTimeSec = double(kmpssSTime) / CLOCKS_PER_SEC;
+    cTimeSec = double(cTime) / CLOCKS_PER_SEC;
+    pTimeSec = double(pTime) / CLOCKS_PER_SEC;
+    sTimeSec = double(sTime) / CLOCKS_PER_SEC;
+    dTimeSec = double(dTime) / CLOCKS_PER_SEC;
 
     printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "KMP Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t");
-    printf("CD: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cdTimeSec);
+    printf("C: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cTimeSec);
     printf("P: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", pTimeSec);
     printf("S: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", sTimeSec);
-    printf("T: " ES_BRIGHTMAGENTA "%fs\n", cdTimeSec + pTimeSec + sTimeSec);
+    printf("D: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", dTimeSec);
+    printf("T: " ES_BRIGHTMAGENTA "%fs\n" ES_RESET, cTimeSec + pTimeSec + sTimeSec + dTimeSec);
 
     AlphaSkipSearchMatcher *alphassm = NULL;
+    cTime = pTime = sTime = dTime = 0;
     for(t = 0; t < stringSet.dim; ++t) {
         currentTime = clock();
         alphassm = new AlphaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.alphabetSize);
-        alphassCDTime += clock() - currentTime;
+        cTime += clock() - currentTime;
 
         currentTime = clock();
         alphassm->preprocessing();
-        alphassPTime += clock() - currentTime;
+        pTime += clock() - currentTime;
 
         currentTime = clock();
         alphassm->search();
-        alphassSTime += clock() - currentTime;
+        sTime += clock() - currentTime;
 
         currentTime = clock();
         delete alphassm;
-        alphassCDTime += clock() - currentTime;
+        dTime += clock() - currentTime;
     }
-    cdTimeSec = double(alphassCDTime) / CLOCKS_PER_SEC;
-    pTimeSec = double(alphassPTime) / CLOCKS_PER_SEC;
-    sTimeSec = double(alphassSTime) / CLOCKS_PER_SEC;
+    cTimeSec = double(cTime) / CLOCKS_PER_SEC;
+    pTimeSec = double(pTime) / CLOCKS_PER_SEC;
+    sTimeSec = double(sTime) / CLOCKS_PER_SEC;
+    dTimeSec = double(dTime) / CLOCKS_PER_SEC;
 
     printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Alpha Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t");
-    printf("CD: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cdTimeSec);
+    printf("C: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cTimeSec);
     printf("P: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", pTimeSec);
     printf("S: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", sTimeSec);
-    printf("T: " ES_BRIGHTMAGENTA "%fs\n", cdTimeSec + pTimeSec + sTimeSec);
+    printf("D: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", dTimeSec);
+    printf("T: " ES_BRIGHTMAGENTA "%fs\n" ES_RESET, cTimeSec + pTimeSec + sTimeSec + dTimeSec);
 
     BetaSkipSearchMatcher *betassm = NULL;
+    cTime = pTime = sTime = dTime = 0;
     for(t = 0; t < stringSet.dim; ++t) {
         currentTime = clock();
         betassm = new BetaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.alphabetSize);
-        betassCDTime += clock() - currentTime;
+        cTime += clock() - currentTime;
 
         currentTime = clock();
         betassm->preprocessing();
-        betassPTime += clock() - currentTime;
+        pTime += clock() - currentTime;
 
         currentTime = clock();
         betassm->search();
-        betassSTime += clock() - currentTime;
+        sTime += clock() - currentTime;
 
         currentTime = clock();
         delete betassm;
-        betassCDTime += clock() - currentTime;
+        dTime += clock() - currentTime;
     }
-    cdTimeSec = double(betassCDTime) / CLOCKS_PER_SEC;
-    pTimeSec = double(betassPTime) / CLOCKS_PER_SEC;
-    sTimeSec = double(betassSTime) / CLOCKS_PER_SEC;
+    cTimeSec = double(cTime) / CLOCKS_PER_SEC;
+    pTimeSec = double(pTime) / CLOCKS_PER_SEC;
+    sTimeSec = double(sTime) / CLOCKS_PER_SEC;
+    dTimeSec = double(dTime) / CLOCKS_PER_SEC;
 
     printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Beta Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t");
-    printf("CD: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cdTimeSec);
+    printf("C: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cTimeSec);
     printf("P: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", pTimeSec);
     printf("S: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", sTimeSec);
-    printf("T: " ES_BRIGHTMAGENTA "%fs\n", cdTimeSec + pTimeSec + sTimeSec);
+    printf("D: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", dTimeSec);
+    printf("T: " ES_BRIGHTMAGENTA "%fs\n" ES_RESET, cTimeSec + pTimeSec + sTimeSec + dTimeSec);
 }
