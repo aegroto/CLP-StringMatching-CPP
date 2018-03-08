@@ -28,7 +28,7 @@ int main() {
                         10000,
                         20000,
                         'a', 'c',
-                        10000);
+                        100);
 
     // debug::testSSOnMP(stringSet); printf("\n");
     // debug::testKMPSSOnMP(stringSet); printf("\n");
@@ -38,11 +38,11 @@ int main() {
 
     // debug::fullCompare(stringSet);
 
-    // debug::separatedFullCompare(stringSet);
+    debug::separatedFullCompare(stringSet);
 
     /*string pattern = "cba";
     string text = "abbccbcbab";
-    GammaSkipSearchMatcher gammassm(pattern, text, 'a', 'c');
+    GammaSkipSearchMatcher gammassm(pattern, text, 3);
     gammassm.execute();
     gammassm.printOutput();*/
 
