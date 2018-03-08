@@ -1,1 +1,1 @@
-g++ src/*.cpp src/alpha_skipsearch/*.cpp src/alphatrie/*.cpp src/beta_skipsearch/*.cpp src/betatrie/*.cpp src/kmp_skipsearch/*.cpp src/mp/*.cpp src/testing/*.cpp -o clpsm -ggdb
+g++ src/*.cpp src/skipsearch/*.cpp src/alpha_skipsearch/*.cpp src/alphatrie/*.cpp src/beta_skipsearch/*.cpp src/betatrie/*.cpp src/gamma_skipsearch/*.cpp src/gammatrie/*.cpp src/kmp_skipsearch/*.cpp src/mp/*.cpp src/testing/*.cpp -o clpsm -ggdb

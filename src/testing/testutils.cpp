@@ -156,8 +156,46 @@ void debug::testBetaSSOnMP(StringSet &stringSet) {
     printf("Beta Skip search VS MP : %zu correct tests on %zu\n" ES_RESET, t, stringSet.dim);
 }
 
+void debug::testGammaSSOnMP(StringSet &stringSet) {
+    MorrisPrattMatcher *mpm = NULL;
+    GammaSkipSearchMatcher *gammassmp = NULL;
+
+    size_t t = 0;
+
+    printf(ES_BRIGHTCYAN "-- TEST UTILS : GAMMA SKIP SEARCH\n-- Launching %zu tests with patterns and texts of lengths m = (%zu, %zu) and n = (%zu, %zu), alphabet is [%c, %c]\n",
+            stringSet.dim, stringSet.minM, stringSet.maxM, stringSet.minN, stringSet.maxN, stringSet.minChar, stringSet.maxChar);
+    printf("-- Testing against MORRIS-PRATT\n" ES_RESET);
+
+    for(t = 0; t < stringSet.dim; ++t) {
+        mpm = new MorrisPrattMatcher(stringSet.getPattern(t), stringSet.getText(t));
+        mpm->execute();
+
+        gammassmp = new GammaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.minChar, stringSet.maxChar);
+        gammassmp->execute();
+
+        if(mpm->getOccurrences() != gammassmp->getOccurrences()) {
+            printf(ES_RED "COMPARING FAILED!\n" ES_RESET);
+            mpm->printOutput();
+            gammassmp->printOutput();
+            printf("\n");
+            break;
+        }
+
+        delete mpm;
+        delete gammassmp;
+    }
+
+    if(t < stringSet.dim)
+        printf(ES_RED "[FAIL] ");
+    else
+        printf(ES_GREEN "[SUCCESS] ");
+
+    printf("Gamma Skip search VS MP : %zu correct tests on %zu\n" ES_RESET, t, stringSet.dim);
+}
+
 void debug::fullCompare(StringSet& stringSet) {
-    clock_t currentTime = 0, mpTime = 0, ssTime = 0, kmpssTime = 0, alphassTime = 0, betassTime = 0;  
+    clock_t currentTime = 0, 
+            sTime = 0;  
     size_t t = 0;
 
     printf(ES_BRIGHTCYAN "-- TEST UTILS : FULL COMPARE\n");
@@ -175,8 +213,8 @@ void debug::fullCompare(StringSet& stringSet) {
         mpm->execute();
         delete mpm;
     }
-    mpTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "Morris-Pratt " ES_BRIGHTCYAN "carried out the challenge in...\t\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(mpTime) / CLOCKS_PER_SEC);
+    sTime = clock() - currentTime;
+    printf("-- " ES_BRIGHTMAGENTA "Morris-Pratt " ES_BRIGHTCYAN "carried out the challenge in...\t\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
     
     SkipSearchMatcher *ssm = NULL;
     currentTime = clock();
@@ -185,8 +223,8 @@ void debug::fullCompare(StringSet& stringSet) {
         ssm->execute();
         delete ssm;
     }
-    ssTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(ssTime) / CLOCKS_PER_SEC);
+    sTime = clock() - currentTime;
+    printf("-- " ES_BRIGHTMAGENTA "Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
     
     KMPSkipSearchMatcher *kmpssm = NULL;
     currentTime = clock();
@@ -195,8 +233,8 @@ void debug::fullCompare(StringSet& stringSet) {
         kmpssm->execute();
         delete kmpssm;
     }
-    kmpssTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "KMP Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(kmpssTime) / CLOCKS_PER_SEC);
+    sTime = clock() - currentTime;
+    printf("-- " ES_BRIGHTMAGENTA "KMP Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
     
     
     AlphaSkipSearchMatcher *alphassm = NULL;
@@ -207,8 +245,8 @@ void debug::fullCompare(StringSet& stringSet) {
         alphassm->execute();
         delete alphassm;
     }
-    alphassTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "Alpha Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(alphassTime) / CLOCKS_PER_SEC);
+    sTime = clock() - currentTime;
+    printf("-- " ES_BRIGHTMAGENTA "Alpha Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
 
     BetaSkipSearchMatcher *betassm = NULL;
     currentTime = clock();
@@ -217,8 +255,19 @@ void debug::fullCompare(StringSet& stringSet) {
         betassm->execute();
         delete betassm;
     }
-    betassTime = clock() - currentTime;
-    printf("-- " ES_BRIGHTMAGENTA "Beta Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(betassTime) / CLOCKS_PER_SEC);
+    sTime = clock() - currentTime;
+    printf("-- " ES_BRIGHTMAGENTA "Beta Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
+    
+    GammaSkipSearchMatcher *gammassm = NULL;
+    currentTime = clock();
+    for(t = 0; t < stringSet.dim; ++t) {
+        gammassm = new GammaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.minChar, stringSet.maxChar);
+        gammassm->execute();
+        delete gammassm;
+    }
+    sTime = clock() - currentTime;
+    printf("-- " ES_BRIGHTMAGENTA "Gamma Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
+    
     printf("\n");
 }
 
@@ -386,6 +435,37 @@ void debug::separatedFullCompare(StringSet& stringSet) {
     dTimeSec = double(dTime) / CLOCKS_PER_SEC;
 
     printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Beta Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t");
+    printf("C: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cTimeSec);
+    printf("P: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", pTimeSec);
+    printf("S: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", sTimeSec);
+    printf("D: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", dTimeSec);
+    printf("T: " ES_BRIGHTMAGENTA "%fs\n" ES_RESET, cTimeSec + pTimeSec + sTimeSec + dTimeSec);
+
+    GammaSkipSearchMatcher *gammassm = NULL;
+    cTime = pTime = sTime = dTime = 0;
+    for(t = 0; t < stringSet.dim; ++t) {
+        currentTime = clock();
+        gammassm = new GammaSkipSearchMatcher(stringSet.getPattern(t), stringSet.getText(t), stringSet.minChar, stringSet.maxChar);
+        cTime += clock() - currentTime;
+
+        currentTime = clock();
+        gammassm->preprocessing();
+        pTime += clock() - currentTime;
+
+        currentTime = clock();
+        gammassm->search();
+        sTime += clock() - currentTime;
+
+        currentTime = clock();
+        delete gammassm;
+        dTime += clock() - currentTime;
+    }
+    cTimeSec = double(cTime) / CLOCKS_PER_SEC;
+    pTimeSec = double(pTime) / CLOCKS_PER_SEC;
+    sTimeSec = double(sTime) / CLOCKS_PER_SEC;
+    dTimeSec = double(dTime) / CLOCKS_PER_SEC;
+
+    printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Gamma Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t");
     printf("C: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", cTimeSec);
     printf("P: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", pTimeSec);
     printf("S: " ES_BRIGHTMAGENTA "%fs" ES_BRIGHTCYAN ", ", sTimeSec);

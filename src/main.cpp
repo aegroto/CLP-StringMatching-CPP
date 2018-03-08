@@ -15,7 +15,7 @@
 #include "testing/testutils.h"
 #include "testing/stringset.h"
 
-#include "beta_skipsearch/beta_skipsearch.h"
+#include "gamma_skipsearch/gamma_skipsearch.h"
 
 using namespace std;
 
@@ -23,12 +23,12 @@ int main() {
     srand(time(0));
 
     printf("Generating string set...\n");
-    StringSet stringSet(30,
-                        50,
-                        4000,
-                        5000,
+    StringSet stringSet(300,
+                        500,
+                        10000,
+                        20000,
                         'a', 'c',
-                        10000);
+                        1000);
 
     /*debug::testSSOnMP(stringSet);
     printf("\n");*/
@@ -38,16 +38,18 @@ int main() {
     printf("\n");*/
     /*debug::testAlphaSSOnMP(stringSet);
     printf("\n");*/
+    /*debug::testGammaSSOnMP(stringSet);
+    printf("\n");*/
 
     // debug::fullCompare(stringSet);
 
     debug::separatedFullCompare(stringSet);
 
-    /*string pattern = "ccc";
-    string text = "aababacacabaacaccccb";
-    BetaSkipSearchMatcher betassm(pattern, text, 3);
-    betassm.execute();
-    betassm.printOutput();*/
+    /*string pattern = "cba";
+    string text = "abbccbcbab";
+    GammaSkipSearchMatcher gammassm(pattern, text, 'a', 'c');
+    gammassm.execute();
+    gammassm.printOutput();*/
 
     return 0;
 }
