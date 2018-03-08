@@ -32,7 +32,7 @@ class GammaNode {
         GammaNode(char, char);
         ~GammaNode();
 
-        inline GammaNode* get(int c) { return (c >= arrayOffset && c < arraySize + arrayOffset) ? children[c] : NULL; } 
+        inline GammaNode* get(int c) { if(c >= arrayOffset) return children[c]; return NULL; } 
         Position* getFirstPos() { return firstPos; }
 
         inline void set(char c, GammaNode *node) { children[c] = node; }  

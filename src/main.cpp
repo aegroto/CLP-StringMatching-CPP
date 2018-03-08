@@ -28,22 +28,17 @@ int main() {
                         10000,
                         20000,
                         'a', 'c',
-                        1000);
+                        10000);
 
-    /*debug::testSSOnMP(stringSet);
-    printf("\n");*/
-    /*debug::testKMPSSOnMP(stringSet);
-    printf("\n");
-    debug::testBetaSSOnMP(stringSet);
-    printf("\n");*/
-    /*debug::testAlphaSSOnMP(stringSet);
-    printf("\n");*/
-    /*debug::testGammaSSOnMP(stringSet);
-    printf("\n");*/
+    // debug::testSSOnMP(stringSet); printf("\n");
+    // debug::testKMPSSOnMP(stringSet); printf("\n");
+    // debug::testAlphaSSOnMP(stringSet); printf("\n");
+    // debug::testBetaSSOnMP(stringSet); printf("\n");
+    // debug::testGammaSSOnMP(stringSet); printf("\n");
 
     // debug::fullCompare(stringSet);
 
-    debug::separatedFullCompare(stringSet);
+    // debug::separatedFullCompare(stringSet);
 
     /*string pattern = "cba";
     string text = "abbccbcbab";

@@ -20,11 +20,9 @@ class AlphaTrie {
         size_t l;
 
     public:
-        // AlphaTrie(size_t);
         AlphaTrie(const char*, size_t, size_t);
         ~AlphaTrie();
         
-        void addSubstring(const char*, int);
         AlphaNode* getRoot() { return root; }
         void print();        
 };
