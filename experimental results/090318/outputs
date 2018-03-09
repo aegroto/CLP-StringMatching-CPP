@@ -1,0 +1,200 @@
+-- String set has 1000 strings, with patterns and texts of lengths m = (2, 2) and n = (500000, 500000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000854s, P: 0.000361s, S: 5.224918s, D: 0.000824s, T: 5.226957s
+-- Skip Search carried out the challenge in...          C: 0.009716s, P: 0.000355s, S: 5.523295s, D: 0.004600s, T: 5.537966s
+-- KMP Skip Search carried out the challenge in...      C: 0.001164s, P: 0.000975s, S: 6.447010s, D: 0.000806s, T: 6.449955s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000746s, P: 0.002532s, S: 6.773698s, D: 0.002820s, T: 6.779796s
+-- Beta Skip Search carried out the challenge in...     C: 0.000693s, P: 0.000510s, S: 6.547710s, D: 0.000734s, T: 6.549647s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000709s, P: 0.000886s, S: 6.897283s, D: 0.000778s, T: 6.899656s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (16, 16) and n = (500000, 500000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000577s, P: 0.000512s, S: 5.081572s, D: 0.000542s, T: 5.083203s
+-- Skip Search carried out the challenge in...          C: 0.018175s, P: 0.000658s, S: 3.834439s, D: 0.004099s, T: 3.857371s
+-- KMP Skip Search carried out the challenge in...      C: 0.001017s, P: 0.001493s, S: 4.260698s, D: 0.000679s, T: 4.263887s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000796s, P: 0.017642s, S: 1.462207s, D: 0.016969s, T: 1.497614s
+-- Beta Skip Search carried out the challenge in...     C: 0.000621s, P: 0.001520s, S: 3.021290s, D: 0.000937s, T: 3.024368s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000879s, P: 0.004134s, S: 1.533955s, D: 0.000925s, T: 1.539893s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (64, 64) and n = (500000, 500000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.001068s, P: 0.001079s, S: 5.196431s, D: 0.001141s, T: 5.199719s
+-- Skip Search carried out the challenge in...          C: 0.044045s, P: 0.002849s, S: 3.604608s, D: 0.006558s, T: 3.658060s
+-- KMP Skip Search carried out the challenge in...      C: 0.001426s, P: 0.002984s, S: 4.306436s, D: 0.001050s, T: 4.311896s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000579s, P: 0.062907s, S: 0.435195s, D: 0.050973s, T: 0.549654s
+-- Beta Skip Search carried out the challenge in...     C: 0.000937s, P: 0.013866s, S: 2.476656s, D: 0.002873s, T: 2.494332s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000620s, P: 0.013077s, S: 0.442463s, D: 0.000614s, T: 0.456774s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (128, 128) and n = (500000, 500000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.001192s, P: 0.001756s, S: 5.222630s, D: 0.001179s, T: 5.226757s
+-- Skip Search carried out the challenge in...          C: 0.080778s, P: 0.009773s, S: 3.662963s, D: 0.008778s, T: 3.762292s
+-- KMP Skip Search carried out the challenge in...      C: 0.001027s, P: 0.004669s, S: 4.166022s, D: 0.000752s, T: 4.172470s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000525s, P: 0.149757s, S: 0.230301s, D: 0.119344s, T: 0.499927s
+-- Beta Skip Search carried out the challenge in...     C: 0.000669s, P: 0.048347s, S: 2.940285s, D: 0.003640s, T: 2.992941s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000565s, P: 0.028782s, S: 0.238129s, D: 0.000560s, T: 0.268036s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (500000, 500000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.001205s, P: 0.003125s, S: 5.181150s, D: 0.000933s, T: 5.186413s
+-- Skip Search carried out the challenge in...          C: 0.156412s, P: 0.028225s, S: 3.520979s, D: 0.006971s, T: 3.712587s
+-- KMP Skip Search carried out the challenge in...      C: 0.001304s, P: 0.008395s, S: 4.153694s, D: 0.000926s, T: 4.164319s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000459s, P: 0.212923s, S: 0.157822s, D: 0.164737s, T: 0.535941s
+-- Beta Skip Search carried out the challenge in...     C: 0.000690s, P: 0.171969s, S: 2.678482s, D: 0.006788s, T: 2.857929s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000587s, P: 0.048394s, S: 0.163015s, D: 0.000583s, T: 0.212579s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (512, 512) and n = (500000, 500000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.001228s, P: 0.005860s, S: 5.208084s, D: 0.000918s, T: 5.216090s
+-- Skip Search carried out the challenge in...          C: 0.298820s, P: 0.106962s, S: 3.503241s, D: 0.009082s, T: 3.918105s
+-- KMP Skip Search carried out the challenge in...      C: 0.001452s, P: 0.015559s, S: 4.182997s, D: 0.001021s, T: 4.201029s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000674s, P: 0.530710s, S: 0.114644s, D: 0.438924s, T: 1.084952s
+-- Beta Skip Search carried out the challenge in...     C: 0.000860s, P: 0.795990s, S: 3.382084s, D: 0.012659s, T: 4.191593s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000533s, P: 0.106443s, S: 0.098745s, D: 0.000473s, T: 0.206194s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (1024, 1024) and n = (500000, 500000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000990s, P: 0.011203s, S: 5.134583s, D: 0.000768s, T: 5.147544s
+-- Skip Search carried out the challenge in...          C: 0.572651s, P: 0.404280s, S: 3.546942s, D: 0.008040s, T: 4.531913s
+-- KMP Skip Search carried out the challenge in...      C: 0.001395s, P: 0.030835s, S: 4.128449s, D: 0.001105s, T: 4.161784s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000916s, P: 1.796053s, S: 0.073758s, D: 1.216426s, T: 3.087153s
+-- Beta Skip Search carried out the challenge in...     C: 0.000686s, P: 3.376392s, S: 3.719846s, D: 0.021412s, T: 7.118336s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000570s, P: 0.248954s, S: 0.064529s, D: 0.000490s, T: 0.314543s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (2048, 2048) and n = (500000, 500000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000897s, P: 0.021770s, S: 5.105082s, D: 0.000670s, T: 5.128419s
+-- Skip Search carried out the challenge in...          C: 1.349923s, P: 1.600050s, S: 3.494664s, D: 0.043766s, T: 6.488403s
+-- KMP Skip Search carried out the challenge in...      C: 0.001503s, P: 0.060684s, S: 4.184179s, D: 0.001077s, T: 4.247443s
+-- Alpha Skip Search carried out the challenge in...    C: 0.001214s, P: 2.605925s, S: 0.050077s, D: 1.767257s, T: 4.424473s
+-- Beta Skip Search carried out the challenge in...     C: 0.000806s, P: 12.646188s, S: 3.102577s, D: 0.052208s, T: 15.801779s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000625s, P: 0.437813s, S: 0.041881s, D: 0.000529s, T: 0.480848s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (4096, 4096) and n = (500000, 500000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.001241s, P: 0.044012s, S: 5.203421s, D: 0.001008s, T: 5.249682s
+-- Skip Search carried out the challenge in...          C: 2.976897s, P: 6.312141s, S: 3.556046s, D: 0.130347s, T: 12.975431s
+-- KMP Skip Search carried out the challenge in...      C: 0.001177s, P: 0.118408s, S: 4.042623s, D: 0.000838s, T: 4.163046s
+-- Alpha Skip Search carried out the challenge in...    C: 0.001707s, P: 7.153508s, S: 0.035910s, D: 4.943526s, T: 12.134651s
+-- Beta Skip Search carried out the challenge in...     C: 0.000754s, P: 53.789911s, S: 3.468031s, D: 0.092734s, T: 57.351430s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000548s, P: 0.974090s, S: 0.021379s, D: 0.000492s, T: 0.996509s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (1000, 1000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000481s, P: 0.003115s, S: 0.011091s, D: 0.000381s, T: 0.015068s
+-- Skip Search carried out the challenge in...          C: 0.181087s, P: 0.029128s, S: 0.006191s, D: 0.016411s, T: 0.232817s
+-- KMP Skip Search carried out the challenge in...      C: 0.000890s, P: 0.010092s, S: 0.008303s, D: 0.000725s, T: 0.020010s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000652s, P: 0.291155s, S: 0.000815s, D: 0.198640s, T: 0.491262s
+-- Beta Skip Search carried out the challenge in...     C: 0.000465s, P: 0.173984s, S: 0.005281s, D: 0.009363s, T: 0.189093s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000440s, P: 0.047027s, S: 0.000758s, D: 0.000447s, T: 0.048672s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (5000, 5000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000520s, P: 0.003096s, S: 0.053213s, D: 0.000403s, T: 0.057232s
+-- Skip Search carried out the challenge in...          C: 0.184921s, P: 0.028518s, S: 0.035442s, D: 0.013945s, T: 0.262826s
+-- KMP Skip Search carried out the challenge in...      C: 0.001005s, P: 0.010294s, S: 0.049252s, D: 0.000666s, T: 0.061217s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000629s, P: 0.284860s, S: 0.002316s, D: 0.191388s, T: 0.479193s
+-- Beta Skip Search carried out the challenge in...     C: 0.000414s, P: 0.180292s, S: 0.029448s, D: 0.006279s, T: 0.216433s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000422s, P: 0.046920s, S: 0.002102s, D: 0.000445s, T: 0.049889s
+
+------------------- -------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (20000, 20000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000516s, P: 0.003012s, S: 0.207326s, D: 0.000395s, T: 0.211249s
+-- Skip Search carried out the challenge in...          C: 0.168095s, P: 0.027664s, S: 0.139537s, D: 0.013132s, T: 0.348428s
+-- KMP Skip Search carried out the challenge in...      C: 0.000664s, P: 0.008174s, S: 0.162798s, D: 0.000445s, T: 0.172081s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000622s, P: 0.271590s, S: 0.007795s, D: 0.187815s, T: 0.467822s
+-- Beta Skip Search carried out the challenge in...     C: 0.000422s, P: 0.178023s, S: 0.116374s, D: 0.006446s, T: 0.301265s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000449s, P: 0.046432s, S: 0.007147s, D: 0.000440s, T: 0.054468s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (50000, 50000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000625s, P: 0.003009s, S: 0.517935s, D: 0.000437s, T: 0.522006s
+-- Skip Search carried out the challenge in...          C: 0.163164s, P: 0.028015s, S: 0.353032s, D: 0.011313s, T: 0.555524s
+-- KMP Skip Search carried out the challenge in...      C: 0.000829s, P: 0.008228s, S: 0.416299s, D: 0.000555s, T: 0.425911s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000444s, P: 0.195726s, S: 0.017887s, D: 0.163872s, T: 0.377929s
+-- Beta Skip Search carried out the challenge in...     C: 0.000484s, P: 0.175784s, S: 0.278252s, D: 0.006280s, T: 0.460800s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000463s, P: 0.044590s, S: 0.016389s, D: 0.000409s, T: 0.061851s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (200000, 200000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000613s, P: 0.002980s, S: 2.019742s, D: 0.000468s, T: 2.023803s
+-- Skip Search carried out the challenge in...          C: 0.150920s, P: 0.027607s, S: 1.353524s, D: 0.005748s, T: 1.537799s
+-- KMP Skip Search carried out the challenge in...      C: 0.000823s, P: 0.008158s, S: 1.616222s, D: 0.000587s, T: 1.625790s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000424s, P: 0.198164s, S: 0.063494s, D: 0.166559s, T: 0.428641s
+-- Beta Skip Search carried out the challenge in...     C: 0.000465s, P: 0.165640s, S: 1.061251s, D: 0.006249s, T: 1.233605s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000434s, P: 0.045086s, S: 0.063897s, D: 0.000436s, T: 0.109853s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (1000000, 1000000), alphabet is [a, c].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000910s, P: 0.002989s, S: 10.054425s, D: 0.000640s, T: 10.058964s
+-- Skip Search carried out the challenge in...          C: 0.150054s, P: 0.027352s, S: 6.716640s, D: 0.006035s, T: 6.900081s
+-- KMP Skip Search carried out the challenge in...      C: 0.001084s, P: 0.008209s, S: 8.108370s, D: 0.000727s, T: 8.118390s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000512s, P: 0.207839s, S: 0.308463s, D: 0.161402s, T: 0.678216s
+-- Beta Skip Search carried out the challenge in...     C: 0.000605s, P: 0.164797s, S: 5.137695s, D: 0.006400s, T: 5.309497s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000521s, P: 0.043926s, S: 0.300394s, D: 0.000520s, T: 0.345361s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (100000, 100000), alphabet is [Z, [].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000601s, P: 0.003233s, S: 1.014871s, D: 0.000464s, T: 1.019169s
+-- Skip Search carried out the challenge in...          C: 0.152043s, P: 0.040364s, S: 1.099875s, D: 0.009444s, T: 1.301726s
+-- KMP Skip Search carried out the challenge in...      C: 0.000795s, P: 0.008235s, S: 1.335722s, D: 0.000587s, T: 1.345339s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000601s, P: 0.357694s, S: 0.047787s, D: 0.255748s, T: 0.661830s
+-- Beta Skip Search carried out the challenge in...     C: 0.000501s, P: 0.229160s, S: 0.707265s, D: 0.006044s, T: 0.942970s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000424s, P: 0.059912s, S: 0.044241s, D: 0.000433s, T: 0.105010s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (100000, 100000), alphabet is [Z, n].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000846s, P: 0.002164s, S: 0.685521s, D: 0.000663s, T: 0.689194s
+-- Skip Search carried out the challenge in...          C: 0.168770s, P: 0.008570s, S: 0.400202s, D: 0.011618s, T: 0.589160s
+-- KMP Skip Search carried out the challenge in...      C: 0.000778s, P: 0.006417s, S: 0.092976s, D: 0.000582s, T: 0.100753s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000466s, P: 0.153610s, S: 0.023754s, D: 0.131072s, T: 0.308902s
+-- Beta Skip Search carried out the challenge in...     C: 0.000631s, P: 0.112810s, S: 0.399916s, D: 0.006710s, T: 0.520067s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000443s, P: 0.047198s, S: 0.025609s, D: 0.000497s, T: 0.073747s
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- String set has 1000 strings, with patterns and texts of lengths m = (256, 256) and n = (100000, 100000), alphabet is [2, d].
+
+-- Morris-Pratt carried out the challenge in...         C: 0.000601s, P: 0.001975s, S: 0.626299s, D: 0.000435s, T: 0.629310s
+-- Skip Search carried out the challenge in...          C: 0.156963s, P: 0.005931s, S: 0.357757s, D: 0.009472s, T: 0.530123s
+-- KMP Skip Search carried out the challenge in...      C: 0.000936s, P: 0.007169s, S: 0.055132s, D: 0.000643s, T: 0.063880s
+-- Alpha Skip Search carried out the challenge in...    C: 0.000525s, P: 0.224610s, S: 0.017367s, D: 0.185711s, T: 0.428213s
+-- Beta Skip Search carried out the challenge in...     C: 0.000455s, P: 0.102602s, S: 0.415877s, D: 0.004514s, T: 0.523448s
+-- Gamma Skip Search carried out the challenge in...    C: 0.000464s, P: 0.093763s, S: 0.019189s, D: 0.000554s, T: 0.113970s
+
