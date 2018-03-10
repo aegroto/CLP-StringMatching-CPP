@@ -8,6 +8,8 @@
 #include <string>
 #include <cstdlib>
 #include <stdio.h>
+#include <fstream>
+#include <streambuf>
 
 #include "../skipsearch/skipsearch.h"
 #include "../kmp_skipsearch/kmp_skipsearch.h"
@@ -28,6 +30,8 @@ namespace debug {
     void testBetaSSOnMP(StringSet&);
     void testGammaSSOnMP(StringSet&);
 
+
+    void fileSearchCompare(string, string, char, char);
     void fullCompare(StringSet&);
     void separatedFullCompare(StringSet&);
 }

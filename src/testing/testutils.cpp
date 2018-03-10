@@ -193,6 +193,64 @@ void debug::testGammaSSOnMP(StringSet &stringSet) {
     printf("Gamma Skip search VS MP : %zu correct tests on %zu\n" ES_RESET, t, stringSet.dim);
 }
 
+void debug::fileSearchCompare(string pattern, string filePath, char minAlphabetChar, char maxAlphabetChar) {
+    clock_t currentTime = 0, sTime = 0;
+
+    printf(ES_BRIGHTCYAN "-- TEST UTILS : FILE SEARCH COMPARE\n-- Launching a performance test on all algorithms implemented in this application\n");
+    printf("-- Searching for pattern " ES_BRIGHTMAGENTA "\"%s\" " ES_BRIGHTCYAN "in file "ES_BRIGHTMAGENTA "\"%s\"\n\n", pattern.c_str(), filePath.c_str());
+
+    ifstream file(filePath.c_str());
+    string text((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+
+    MorrisPrattMatcher *mpm = NULL;
+    currentTime = clock();
+    mpm = new MorrisPrattMatcher(pattern, text);
+    mpm->execute();
+    delete mpm;
+    sTime = clock() - currentTime;
+    printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Morris-Pratt " ES_BRIGHTCYAN "carried out the challenge in...\t\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
+    
+    SkipSearchMatcher *ssm = NULL;
+    currentTime = clock();
+    ssm = new SkipSearchMatcher(pattern, text);
+    ssm->execute();
+    delete ssm;
+    sTime = clock() - currentTime;
+    printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
+    
+    KMPSkipSearchMatcher *kmpssm = NULL;
+    currentTime = clock();
+    kmpssm = new KMPSkipSearchMatcher(pattern, text);
+    kmpssm->execute();
+    delete kmpssm;
+    sTime = clock() - currentTime;
+    printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "KMP Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
+
+    AlphaSkipSearchMatcher *alphassm = NULL;
+    currentTime = clock();
+    alphassm = new AlphaSkipSearchMatcher(pattern, text, int(maxAlphabetChar - minAlphabetChar + 1));
+    alphassm->execute();
+    delete alphassm;
+    sTime = clock() - currentTime;
+    printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Alpha Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
+       
+    BetaSkipSearchMatcher *betassm = NULL;
+    currentTime = clock();
+    betassm = new BetaSkipSearchMatcher(pattern, text, int(maxAlphabetChar - minAlphabetChar + 1));
+    betassm->execute();
+    delete betassm;
+    sTime = clock() - currentTime;
+    printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Beta Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
+    
+    GammaSkipSearchMatcher *gammassm = NULL;
+    currentTime = clock();
+    gammassm = new GammaSkipSearchMatcher(pattern, text, minAlphabetChar, maxAlphabetChar);
+    gammassm->execute();
+    delete gammassm;
+    sTime = clock() - currentTime;
+    printf(ES_BRIGHTCYAN "-- " ES_BRIGHTMAGENTA "Gamma Skip Search " ES_BRIGHTCYAN "carried out the challenge in...\t" ES_BRIGHTMAGENTA "%fs\n" ES_BRIGHTCYAN, double(sTime) / CLOCKS_PER_SEC);
+}
+
 void debug::fullCompare(StringSet& stringSet) {
     clock_t currentTime = 0, 
             sTime = 0;  
@@ -201,8 +259,8 @@ void debug::fullCompare(StringSet& stringSet) {
     printf(ES_BRIGHTCYAN "-- TEST UTILS : FULL COMPARE\n");
     printf("-- Launching a performance test on all algorithms implemented in this application.\n");
     printf("-- String set has " ES_BRIGHTMAGENTA "%zu" ES_BRIGHTCYAN " strings, ", stringSet.dim);
-    printf("with patterns and texts of lengths " ES_BRIGHTMAGENTA "m = (%zu, %zu) " ES_CYAN, stringSet.minM, stringSet.maxM);
-    printf("and " ES_BRIGHTMAGENTA "n = (%zu, %zu)" ES_CYAN ", alphabet is" ES_BRIGHTMAGENTA " [%c, %c]" ES_CYAN ".\n\n",
+    printf("with patterns and texts of lengths " ES_BRIGHTMAGENTA "m = (%zu, %zu) " ES_BRIGHTCYAN, stringSet.minM, stringSet.maxM);
+    printf("and " ES_BRIGHTMAGENTA "n = (%zu, %zu)" ES_BRIGHTCYAN ", alphabet is" ES_BRIGHTMAGENTA " [%c, %c]" ES_BRIGHTCYAN ".\n\n",
             stringSet.minN, stringSet.maxN, stringSet.minChar, stringSet.maxChar);
 
     
@@ -282,8 +340,8 @@ void debug::separatedFullCompare(StringSet& stringSet) {
     printf(ES_BRIGHTCYAN "-- TEST UTILS : SEPARATED FULL COMPARE\n");
     printf("-- Launching a performance test on all algorithms implemented in this application, separating construction/destruction, preprocessing and searching.\n");
     printf("-- String set has " ES_BRIGHTMAGENTA "%zu" ES_BRIGHTCYAN " strings, ", stringSet.dim);
-    printf("with patterns and texts of lengths " ES_BRIGHTMAGENTA "m = (%zu, %zu) " ES_CYAN, stringSet.minM, stringSet.maxM);
-    printf("and " ES_BRIGHTMAGENTA "n = (%zu, %zu)" ES_CYAN ", alphabet is" ES_BRIGHTMAGENTA " [%c, %c]" ES_CYAN ".\n\n",
+    printf("with patterns and texts of lengths " ES_BRIGHTMAGENTA "m = (%zu, %zu) " ES_BRIGHTCYAN, stringSet.minM, stringSet.maxM);
+    printf("and " ES_BRIGHTMAGENTA "n = (%zu, %zu)" ES_BRIGHTCYAN ", alphabet is" ES_BRIGHTMAGENTA " [%c, %c]" ES_BRIGHTCYAN ".\n\n",
             stringSet.minN, stringSet.maxN, stringSet.minChar, stringSet.maxChar);
 
     MorrisPrattMatcher *mpm = NULL;
