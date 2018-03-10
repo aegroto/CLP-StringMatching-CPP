@@ -1,0 +1,8 @@
+-- Searching for pattern "god" in file "experimental sources/bible.txt"
+
+-- Morris-Pratt carried out the challenge in...         0.029621s
+-- Skip Search carried out the challenge in...          0.033885s
+-- KMP Skip Search carried out the challenge in...      0.016479s
+-- Alpha Skip Search carried out the challenge in...    0.026217s
+-- Beta Skip Search carried out the challenge in...     0.035553s
+-- Gamma Skip Search carried out the challenge in...    0.026907s
