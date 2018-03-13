@@ -1,6 +1,8 @@
 /**
  * "SkipSearchMatcher" class header file
  *
+ * Released under ZLib license: https://www.zlib.net/zlib_license.html
+ *
  * Valentino Merlino
 **/
 

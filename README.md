@@ -11,3 +11,5 @@ Experimental utils, results and sources are included.
 Everything you may find here has been developed as a univerisity project for an Algorithm Lab course, held by Prof. Faro (http://www.dmi.unict.it/~faro/laboratorio_algoritmi.php).
 
 Lorenzo Catania's website: http://itrench.me/
+
+Released under ZLib license: https://www.zlib.net/zlib_license.html
