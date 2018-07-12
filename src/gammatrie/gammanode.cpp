@@ -10,7 +10,7 @@
 GammaNode::GammaNode(char minChar, char maxChar) : arraySize(maxChar - minChar + 1), arrayOffset(minChar) {
     children = new GammaNode*[arraySize];
     children -= arrayOffset;
-
+  
     const size_t limit = arrayOffset + arraySize;
 
     for(int i = arrayOffset; i < limit; ++i) {

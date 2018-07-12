@@ -22,13 +22,13 @@ using namespace std;
 int main() {
     srand(time(0));
 
-    /*printf("Generating string set...\n");
+    printf("Generating string set...\n");
     StringSet stringSet(256,
                         256,
                         100000,
                         100000,
                         50, 100,
-                        1000);*/
+                        1000);
 
     // debug::testSSOnMP(stringSet); printf("\n");
     // debug::testKMPSSOnMP(stringSet); printf("\n");
@@ -38,13 +38,13 @@ int main() {
 
     // debug::fullCompare(stringSet);
 
-    // debug::separatedFullCompare(stringSet);
+    debug::separatedFullCompare(stringSet);
 
-    debug::fileSearchCompare("god", "experimental sources/bible.txt", 32, 125);
+    // debug::fileSearchCompare("god", "experimental sources/bible.txt", 32, 125);
 
-    /*string pattern = "cba";
-    string text = "abbccbcbab";
-    GammaSkipSearchMatcher gammassm(pattern, text, 3);
+    /*string pattern = "aa";
+    string text = "aaaaaaaaaa";
+    GammaSkipSearchMatcher gammassm(pattern, text, 'a', 'a');
     gammassm.execute();
     gammassm.printOutput();*/
 
