@@ -3,6 +3,8 @@
  * Original Algorithm by C. Charras, T. Lecroq, J. D. Pehoushek.
  * C++ implementation by Lorenzo Catania and Valentino Merlino
  *
+ * Released under ZLib license: https://www.zlib.net/zlib_license.html
+ *
  * Lorenzo Catania
 **/
 
@@ -34,7 +36,7 @@ int main() {
     // debug::testKMPSSOnMP(stringSet); printf("\n");
     // debug::testAlphaSSOnMP(stringSet); printf("\n");
     // debug::testBetaSSOnMP(stringSet); printf("\n");
-    // debug::testGammaSSOnMP(stringSet); printf("\n");
+    debug::testGammaSSOnMP(stringSet); printf("\n");
 
     // debug::fullCompare(stringSet);
 

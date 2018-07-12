@@ -1,6 +1,8 @@
 /**
  * "AlphaTrie" class definition file
  *
+ * Released under ZLib license: https://www.zlib.net/zlib_license.html
+ *
  * Lorenzo Catania
 **/
 
